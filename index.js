@@ -8,7 +8,8 @@ import * as pointerLock from './node_modules/three/examples/jsm/controls/Pointer
 
 
 const cam = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 1, 1000);
-cam.position.z = 7;
+// cam.position.z = 7;
+cam.position.z = -80;
 cam.position.y = 1;
 
 const scene = new THREE.Scene();
@@ -21,6 +22,8 @@ renderer.shadowMap.type = THREE.BasicShadowMap;
 document.body.appendChild(renderer.domElement);
 document.body.appendChild(renderer.domElement);
 
+const wall1_texture = new THREE.TextureLoader().load('assets/texture/wall.jpg')
+const wall2_texture = new THREE.TextureLoader().load('assets/texture/wall2.jpg')
 
 let btn1 = document.querySelector("#button1")
 btn1.addEventListener('click', () => {
@@ -74,6 +77,12 @@ planeMesh.position.set(0, -1, 0)
 planeMesh.rotation.x = -Math.PI / 2
 scene.add(planeMesh)
 
+const pointlight = new THREE.PointLight(0xffffff, 400, 50);
+pointlight.position.set(0, 10, -95);
+pointlight.castShadow = true;
+scene.add(new THREE.PointLightHelper(pointlight, 5,0x0000ff));
+scene.add(pointlight);
+
 
 // kendali
 // let kendali = Object()
@@ -114,29 +123,49 @@ scene.add(planeMesh)
 
 
 const geometry = new THREE.BoxGeometry(0.5, 50, 50);
-const material = new THREE.MeshPhongMaterial({ color: 0x00ff00 });
+const material = new THREE.MeshPhongMaterial({
+    map: wall1_texture
+});
 const cube = new THREE.Mesh(geometry, material)
 cube.position.set(35, 1, -50)
 cube.receiveShadow = true
 scene.add(cube);
 
-
 const geometry1 = new THREE.BoxGeometry(0.5, 50, 50);
-const material1 = new THREE.MeshPhongMaterial({ color: 0x00ff00 });
+const material1 = new THREE.MeshPhongMaterial({
+    map: wall1_texture
+});
 const cube1 = new THREE.Mesh(geometry1, material1)
-cube1.position.set(-30, 1, -50)
+cube1.position.set(-35, 1, -50)
 scene.add(cube1);
 
 const geometry2 = new THREE.BoxGeometry(55, 50, 1);
-const material2 = new THREE.MeshPhongMaterial({ color: 0x00ff00 });
+const material2 = new THREE.MeshPhongMaterial({
+    map: wall1_texture
+});
 const cube2 = new THREE.Mesh(geometry2, material2)
 cube2.position.set(0, 1, -75)
 scene.add(cube2);
 
+const geometry3 = new THREE.BoxGeometry(0.5, 50, 50);
+const material3 = new THREE.MeshPhongMaterial({
+    map: wall2_texture
+});
+const cube3 = new THREE.Mesh(geometry3, material3)
+cube3.position.set(35, 1, -100)
+scene.add(cube3);
+
+const geometry4 = new THREE.BoxGeometry(0.5, 50, 50);
+const material4 = new THREE.MeshPhongMaterial({
+    map: wall2_texture
+});
+const cube4 = new THREE.Mesh(geometry4, material4)
+cube4.position.set(-35, 1, -100)
+scene.add(cube4);
 
 let clockTyrano = new THREE.Clock()
-let gltfPath = 'model/tyranosaurus/scene.gltf'
-let texturePath = 'model/tyranosaurus/textures/material_0_specularGlossiness.png'
+let gltfPath = 'model/dinosaurs/tyranosaurus/scene.gltf'
+let texturePath = 'model/dinosaurs/tyranosaurus/textures/material_0_specularGlossiness.png'
 let tyranoMixer
 lib.dinosaurus(scene, gltfPath, 4, 1.3, texturePath, 4.9, { x: 25, y: 0, z: -30 }).then(mixer => {
     tyranoMixer = mixer
@@ -145,8 +174,8 @@ lib.dinosaurus(scene, gltfPath, 4, 1.3, texturePath, 4.9, { x: 25, y: 0, z: -30 
 });
 
 // let clockPtera = new THREE.Clock()
-// gltfPath = 'model/pteradactal/scene.gltf'
-// texturePath = 'model/pteradactal/textures/material0_baseColor.png'
+// gltfPath = 'model/dinosaurs/pteradactal/scene.gltf'
+// texturePath = 'model/dinosaurs/pteradactal/textures/material0_baseColor.png'
 // let pteraMixer
 // lib.dinosaurus(three.scene, gltfPath, 0, 2, texturePath, {x:-10, y:-3, z:-10}).then(mixer => {
 //     pteraMixer = mixer
@@ -155,8 +184,8 @@ lib.dinosaurus(scene, gltfPath, 4, 1.3, texturePath, 4.9, { x: 25, y: 0, z: -30 
 // });
 
 let clockStego = new THREE.Clock()
-gltfPath = 'model/stegosaurus/scene.gltf'
-texturePath = 'model/stegosaurus/textures/CH_NPC_MOB_Stego_A01_MI_HAY_normal.png'
+gltfPath = 'model/dinosaurs/stegosaurus/scene.gltf'
+texturePath = 'model/dinosaurs/stegosaurus/textures/CH_NPC_MOB_Stego_A01_MI_HAY_normal.png'
 let stegoMixer
 lib.dinosaurus(scene, gltfPath, 3, 6, texturePath, 3, {x:25, y:0, z:-50}).then(mixer => {
     stegoMixer = mixer
@@ -165,8 +194,8 @@ lib.dinosaurus(scene, gltfPath, 3, 6, texturePath, 3, {x:25, y:0, z:-50}).then(m
 });
 
 // let clockMega = new THREE.Clock()
-// gltfPath = 'model/megalodon/scene.gltf'
-// texturePath = 'model/megalodon/textures/material_0_clearcoat_roughness.png'
+// gltfPath = 'model/dinosaurs/megalodon/scene.gltf'
+// texturePath = 'model/dinosaurs/megalodon/textures/material_0_clearcoat_roughness.png'
 // let megaMixer
 // lib.dinosaurus(three.scene, gltfPath, 0, 2, texturePath, {x:10, y:0, z:-10}).then(mixer => {
 //     megaMixer = mixer
@@ -175,8 +204,8 @@ lib.dinosaurus(scene, gltfPath, 3, 6, texturePath, 3, {x:25, y:0, z:-50}).then(m
 // });
 
 let clockVelo = new THREE.Clock()
-gltfPath = 'model/velociraptor/scene.gltf'
-texturePath = 'model/velociraptor/textures/Body_Mat_baseColor.png'
+gltfPath = 'model/dinosaurs/velociraptor/scene.gltf'
+texturePath = 'model/dinosaurs/velociraptor/textures/Body_Mat_baseColor.png'
 let veloMixer
 lib.dinosaurus(scene, gltfPath, 1, 2, texturePath, 4.9, { x: 25, y: 0, z: -40 }).then(mixer => {
     veloMixer = mixer

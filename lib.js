@@ -50,8 +50,6 @@ export function lighting(scene) {
     pointLight.castShadow = true
     scene.add(pointLight)
     scene.add(new THREE.PointLightHelper(pointLight, 0.2, 0x00ff00))
-
-
 }
 
 export function dinosaurus(scene, gltfPath, aniNUm, scl, texturePath, r, pstn) {
@@ -64,6 +62,7 @@ export function dinosaurus(scene, gltfPath, aniNUm, scl, texturePath, r, pstn) {
     scene.add(pointLight1)
     scene.add(new THREE.PointLightHelper(pointLight1, 0.2, 0x00ff00))
 
+    // Podium
     let podium;
     let loaderr = new GLTFLoader.GLTFLoader().load('model/podium_large/scene.gltf', function (result) {
         podium = result.scene.children[0];
