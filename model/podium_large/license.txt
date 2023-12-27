@@ -1,0 +1,11 @@
+Model Information:
+* title:	Podium (Large)
+* source:	https://sketchfab.com/3d-models/podium-large-e5a3e5b47a024d0c83c367508629d660
+* author:	Jochon (https://sketchfab.com/jochon)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Podium (Large)" (https://sketchfab.com/3d-models/podium-large-e5a3e5b47a024d0c83c367508629d660) by Jochon (https://sketchfab.com/jochon) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
