@@ -70,7 +70,7 @@ export function dinosaurus(scene, gltfPath, aniNUm, scl, texturePath, r, pstn) {
         podium.scale.set(0.02, 0.02, 0.04)
         podium.position.set(pstn.x, pstn.y, pstn.z)
         podium.rotation.z = 1.6
-        podium.material = new THREE.Mesh({ receivesShadow: true });
+        // podium.material = new THREE.Mesh({ receivesShadow: true });
         scene.add(podium)
     });
 
