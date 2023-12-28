@@ -7,7 +7,7 @@ import * as GLTFLoader from './node_modules/three/examples/jsm/loaders/GLTFLoade
 import * as pointerLock from './node_modules/three/examples/jsm/controls/PointerLockControls.js'
 
 
-const cam = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 1, 1000);
+let cam = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 1, 1000);
 cam.position.z = 7;
 // cam.position.z = -80;
 cam.position.y = 1;
@@ -122,27 +122,27 @@ let clockTyrano = new THREE.Clock()
 let gltfPath = 'model/dinosaurs/tyranosaurus/scene.gltf'
 let texturePath = 'model/dinosaurs/tyranosaurus/textures/material_0_specularGlossiness.png'
 let tyranoMixer
-lib.dinosaurus(scene, gltfPath, 4, 1.3, texturePath, 4.9, { x: 25, y: 0, z: -30 }).then(mixer => {
+lib.dinosaurus(scene, gltfPath, 2, 1.7, texturePath, 4.9, { x: 25, y: 0, z: -30 }).then(mixer => {
     tyranoMixer = mixer
 }).catch(error => {
     console.log(error)
 });
 
-// let clockPtera = new THREE.Clock()
-// gltfPath = 'model/dinosaurs/pteradactal/scene.gltf'
-// texturePath = 'model/dinosaurs/pteradactal/textures/material0_baseColor.png'
-// let pteraMixer
-// lib.dinosaurus(three.scene, gltfPath, 0, 2, texturePath, {x:-10, y:-3, z:-10}).then(mixer => {
-//     pteraMixer = mixer
-// }).catch(error => {
-//     console.log(error)
-// });
+let clockPtera = new THREE.Clock()
+gltfPath = 'model/dinosaurs/pteradactal/scene.gltf'
+texturePath = 'model/dinosaurs/pteradactal/textures/material0_baseColor.png'
+let pteraMixer
+lib.dinosaurus(scene, gltfPath, 0, 2.5, texturePath, 1.5, {x:-25, y:0, z:-30}).then(mixer => {
+    pteraMixer = mixer
+}).catch(error => {
+    console.log(error)
+});
 
 let clockStego = new THREE.Clock()
 gltfPath = 'model/dinosaurs/stegosaurus/scene.gltf'
 texturePath = 'model/dinosaurs/stegosaurus/textures/CH_NPC_MOB_Stego_A01_MI_HAY_normal.png'
 let stegoMixer
-lib.dinosaurus(scene, gltfPath, 3, 6, texturePath, 3, {x:25, y:0, z:-50}).then(mixer => {
+lib.dinosaurus(scene, gltfPath, 3, 7, texturePath, 3, {x:25, y:0, z:-50}).then(mixer => {
     stegoMixer = mixer
 }).catch(error => {
     console.log(error)
@@ -162,11 +162,22 @@ let clockVelo = new THREE.Clock()
 gltfPath = 'model/dinosaurs/velociraptor/scene.gltf'
 texturePath = 'model/dinosaurs/velociraptor/textures/Body_Mat_baseColor.png'
 let veloMixer
-lib.dinosaurus(scene, gltfPath, 1, 2, texturePath, 4.9, { x: 25, y: 0, z: -40 }).then(mixer => {
+lib.dinosaurus(scene, gltfPath, 11, 2, texturePath, 4.9, { x: 25, y: 0, z: -40 }).then(mixer => {
     veloMixer = mixer
 }).catch(error => {
     console.log(error)
 });
+
+let clockTri = new THREE.Clock()
+gltfPath = 'model/dinosaurs/triceratops/scene.gltf'
+texturePath = 'model/dinosaurs/triceratops/textures/sanjiaolong_baseColor.png'
+let triMixer
+lib.dinosaurus(scene, gltfPath, 0, 2, texturePath, 1.5, { x:-25, y: 0, z: -40 }).then(mixer => {
+    triMixer = mixer
+}).catch(error => {
+    console.log(error)
+});
+
 
 // Fosil plateosaurus
 var plateosaurus_gltf = 'model/fosils/plateosaurus_skeleton/scene.gltf';
@@ -181,9 +192,9 @@ const draw = () => {
         tyranoMixer.update(clockTyrano.getDelta());
     }
 
-    // if (pteraMixer) {
-    //     pteraMixer.update(clockPtera.getDelta());
-    // }
+    if (pteraMixer) {
+        pteraMixer.update(clockPtera.getDelta());
+    }
     // if (megaMixer) {
     //     megaMixer.update(clockMega.getDelta());
 
@@ -195,6 +206,11 @@ const draw = () => {
     }
     if (stegoMixer) {
         stegoMixer.update(clockStego.getDelta());
+
+    }
+
+    if (triMixer) {
+        triMixer.update(clockTri.getDelta());
 
     }
 
