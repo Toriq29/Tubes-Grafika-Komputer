@@ -8,8 +8,8 @@ import * as pointerLock from './node_modules/three/examples/jsm/controls/Pointer
 
 
 const cam = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 1, 1000);
-// cam.position.z = 7;
-cam.position.z = -80;
+cam.position.z = 7;
+// cam.position.z = -80;
 cam.position.y = 1;
 
 const scene = new THREE.Scene();
@@ -76,51 +76,6 @@ planeMesh.receiveShadow = true
 planeMesh.position.set(0, -1, 0)
 planeMesh.rotation.x = -Math.PI / 2
 scene.add(planeMesh)
-
-const pointlight = new THREE.PointLight(0xffffff, 400, 50);
-pointlight.position.set(0, 10, -95);
-pointlight.castShadow = true;
-scene.add(new THREE.PointLightHelper(pointlight, 5,0x0000ff));
-scene.add(pointlight);
-
-
-// kendali
-// let kendali = Object()
-// kendali.x = -2
-// kendali.y = 4
-// kendali.z = 3.5
-
-// let gui = new dat.GUI()
-// gui.add(kendali, "x", -8, 8)
-// gui.add(kendali, "y", -8, 8)
-// gui.add(kendali, "z", -8, 8)
-
-// let idx = 0
-// addEventListener("keypress", (evt) => {
-//     let nextAction
-
-//     if (idx == 0) {
-//         idx = 1
-//     }
-//     else if(idx == 1){
-//         idx = 2
-//     }
-//     else if(idx == 2){
-//         idx = 3
-//     }
-//     else if(idx == 3){
-//         idx = 4
-//     }
-//     else{
-//         idx = 0
-//     }
-
-//     nextAction = mixer.clipAction(animation[idx])
-//     action = action.crossFadeTo(nextAction,1,true)
-//     action.enabled = true
-//     action.play()
-// })
-
 
 const geometry = new THREE.BoxGeometry(0.5, 50, 50);
 const material = new THREE.MeshPhongMaterial({
@@ -212,6 +167,11 @@ lib.dinosaurus(scene, gltfPath, 1, 2, texturePath, 4.9, { x: 25, y: 0, z: -40 })
 }).catch(error => {
     console.log(error)
 });
+
+// Fosil plateosaurus
+var plateosaurus_gltf = 'model/fosils/plateosaurus_skeleton/scene.gltf';
+var plateosaurus_txt = 'model/fosils/plateosaurus_skeleton/textures/material_0_diffuse.png';
+var platersaurus = lib.fosils(scene, plateosaurus_txt, plateosaurus_gltf, 2, {x:20, y:5, z:-100});
 
 const draw = () => {
     let delta = clock.getDelta()

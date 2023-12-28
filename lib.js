@@ -52,6 +52,7 @@ export function lighting(scene) {
     scene.add(new THREE.PointLightHelper(pointLight, 0.2, 0x00ff00))
 }
 
+
 export function dinosaurus(scene, gltfPath, aniNUm, scl, texturePath, r, pstn) {
 
     // point light
@@ -110,3 +111,38 @@ export function dinosaurus(scene, gltfPath, aniNUm, scl, texturePath, r, pstn) {
     });
 }
 
+export function fosils(scene, fosiltxt, fosilGltf, scl, pstn) {
+    var loader = new GLTFLoader.GLTFLoader()
+    var texture = new THREE.TextureLoader().load(fosiltxt);
+
+    var pointLight = new THREE.PointLight(0xffffff, 400, 50)
+    pointLight.position.set(pstn.x, pstn.y + 10, pstn.z)
+    pointLight.castShadow = true
+    scene.add(pointLight)
+    scene.add(new THREE.PointLightHelper(pointLight, 0.2, 0x00ff00))
+
+    loader.load(fosilGltf, function(fosil) {
+        fosil.scene.traverse(function(child) {
+            if (child.isMesh) {
+                child.material.map = texture;
+            }
+        });
+        fosil.scene.position.set(pstn.x, pstn.y, pstn.z);
+        fosil.scene.scale.set(scl, scl, scl);
+        scene.add(fosil.scene);
+    });
+
+    var podium_gltf = 'model/aztec_podium/scene.gltf'
+    var podium_txt = new THREE.TextureLoader().load('model/aztec_podhium/textures/None_baseColor.png');
+
+    loader.load(podium_gltf, function(podium) {
+        podium.scene.traverse(function(child) {
+            if (child.isMesh) {
+                child.material.map = podium_txt;
+            }
+        });
+        podium.scene.position.set(pstn.x, -1, pstn.z);
+        podium.scene.scale.set(0.5, 0.5, 0.5);
+        scene.add(podium.scene);
+    });
+}
