@@ -1,0 +1,11 @@
+Model Information:
+* title:	Mammoth
+* source:	https://sketchfab.com/3d-models/mammoth-f257c99765e242038583aa6b34e01635
+* author:	Bernardo.Delgado (https://sketchfab.com/Bernardo.Delgado)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Mammoth" (https://sketchfab.com/3d-models/mammoth-f257c99765e242038583aa6b34e01635) by Bernardo.Delgado (https://sketchfab.com/Bernardo.Delgado) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

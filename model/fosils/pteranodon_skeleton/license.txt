@@ -1,0 +1,11 @@
+Model Information:
+* title:	Pteranodon Skeleton (High Poly Count)
+* source:	https://sketchfab.com/3d-models/pteranodon-skeleton-high-poly-count-85e6c1e77be241f1901fcad071adbec8
+* author:	Holden Williams (https://sketchfab.com/Rag02)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Pteranodon Skeleton (High Poly Count)" (https://sketchfab.com/3d-models/pteranodon-skeleton-high-poly-count-85e6c1e77be241f1901fcad071adbec8) by Holden Williams (https://sketchfab.com/Rag02) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

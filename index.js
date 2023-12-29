@@ -178,11 +178,37 @@ lib.dinosaurus(scene, gltfPath, 0, 2, texturePath, 1.5, { x:-25, y: 0, z: -40 })
     console.log(error)
 });
 
-
 // Fosil plateosaurus
 var plateosaurus_gltf = 'model/fosils/plateosaurus_skeleton/scene.gltf';
 var plateosaurus_txt = 'model/fosils/plateosaurus_skeleton/textures/material_0_diffuse.png';
-var platersaurus = lib.fosils(scene, plateosaurus_txt, plateosaurus_gltf, 2, {x:20, y:5, z:-100});
+lib.fosils(scene, plateosaurus_txt, plateosaurus_gltf, 2, {x:25, y:5, z:-100}, 30);
+
+// Fosil Dodo
+var dodo_gltf = 'model/fosils/dodo_skeleton/scene.gltf';
+var dodo_txt = 'model/fosils/plateosaurus_skeleton/textures/material_0_diffuse.png';
+lib.fosils(scene, dodo_txt, dodo_gltf, 2, {x:-25, y:5, z:-100}, -30);
+
+
+// Fosil Triceratops
+var triceratops_gltf = 'model/fosils/triceratops_skeleton/scene.gltf';
+var triceratops_txt = 'model/fosils/triceratops_skeleton/textures/default_baseColor.png';
+lib.fosils(scene, triceratops_txt, triceratops_gltf, 4, {x:-25, y:2.5, z:-120}, -30);
+
+// Fosil Tyrannosaurus
+var tyrannosaurus_gltf = 'model/fosils/tyrannosaurus_rex_skeleton/scene.gltf';
+var tyrannosaurus_txt = 'model/fosils/tyrannosaurus_rex_skeleton/textures/dyno_tex_Material_u1_v1_baseColor.jpeg';
+lib.fosils(scene, tyrannosaurus_txt, tyrannosaurus_gltf, 4, {x:25, y:1, z:-120}, 30);
+
+// Fosil mammoth
+var mammoth_gltf = 'model/fosils/mammoth/scene.gltf';
+var mammoth_txt = 'model/fosils/mammoth/textures/material_0_baseColor.jpeg';
+lib.fosils(scene, mammoth_txt, mammoth_gltf, 0.5, {x:0, y:-1, z:-85}, 0);
+
+// Fosil Pteranodon
+// var pteranodon_gltf = 'model/fosils/pteranodon_skeleton/scene.gltf';
+// var pteranodon_txt = 'model/fosils/plateosaurus_skeleton/textures/material_0_diffuse.png';
+// lib.fosils(scene, pteranodon_txt, pteranodon_gltf, 1, {x:20, y:3, z:-120});
+
 
 const draw = () => {
     let delta = clock.getDelta()

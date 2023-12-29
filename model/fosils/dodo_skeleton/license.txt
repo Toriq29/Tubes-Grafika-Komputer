@@ -1,0 +1,11 @@
+Model Information:
+* title:	Dodo Skeleton (High Poly Count)
+* source:	https://sketchfab.com/3d-models/dodo-skeleton-high-poly-count-a4d6ea606e794cf9b71ef2d06fde21fe
+* author:	Holden Williams (https://sketchfab.com/Rag02)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Dodo Skeleton (High Poly Count)" (https://sketchfab.com/3d-models/dodo-skeleton-high-poly-count-a4d6ea606e794cf9b71ef2d06fde21fe) by Holden Williams (https://sketchfab.com/Rag02) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
