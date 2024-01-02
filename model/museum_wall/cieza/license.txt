@@ -1,0 +1,11 @@
+Model Information:
+* title:	Cieza Museum Arch #12
+* source:	https://sketchfab.com/3d-models/cieza-museum-arch-12-409dbf9f0b2b4d1f860ba60a54f229ad
+* author:	Global Digital Heritage (https://sketchfab.com/GlobalDigitalHeritage)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Cieza Museum Arch #12" (https://sketchfab.com/3d-models/cieza-museum-arch-12-409dbf9f0b2b4d1f860ba60a54f229ad) by Global Digital Heritage (https://sketchfab.com/GlobalDigitalHeritage) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
