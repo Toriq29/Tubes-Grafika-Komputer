@@ -164,11 +164,9 @@ scene.add(cube7);
 // dino sebelah kanan - 1
 let clockTyrano = new THREE.Clock();
 let gltfPath = "model/dinosaurs/tyranosaurus/scene.gltf";
-let texturePath =
-  "model/dinosaurs/tyranosaurus/textures/material_0_specularGlossiness.png";
 let tyranoMixer;
 lib
-  .dinosaurus(scene, gltfPath, 2, 1.7, texturePath, 4.9, {
+  .dinosaurus(scene, gltfPath, 2, 1.7, 4.9, {
     x: 20,
     y: 0,
     z: -30,
@@ -183,10 +181,9 @@ lib
   // dino sebelah kiri - 1
 let clockPtera = new THREE.Clock();
 gltfPath = "model/dinosaurs/pteradactal/scene.gltf";
-texturePath = "model/dinosaurs/pteradactal/textures/material0_baseColor.png";
 let pteraMixer;
 lib
-  .dinosaurus(scene, gltfPath, 0, 2.5, texturePath, 1.5, {
+  .dinosaurus(scene, gltfPath, 0, 2.5, 1.5, {
     x: -20,
     y: 0,
     z: -30,
@@ -201,11 +198,9 @@ lib
 // dino sebelah kanan - 2
 let clockStego = new THREE.Clock();
 gltfPath = "model/dinosaurs/stegosaurus/scene.gltf";
-texturePath =
-  "model/dinosaurs/stegosaurus/textures/CH_NPC_MOB_Stego_A01_MI_HAY_normal.png";
 let stegoMixer;
 lib
-  .dinosaurus(scene, gltfPath, 3, 7, texturePath, 3, { x: 20, y: 0, z: -45 })
+  .dinosaurus(scene, gltfPath, 3, 7, 3, { x: 20, y: 0, z: -45 })
   .then((mixer) => {
     stegoMixer = mixer;
   })
@@ -215,11 +210,9 @@ lib
 // dino sebelah kiri - 2
   let clockTri = new THREE.Clock();
   gltfPath = "model/dinosaurs/triceratops/scene.gltf";
-  texturePath =
-    "model/dinosaurs/triceratops/textures/sanjiaolong_baseColor.png";
   let triMixer;
   lib
-    .dinosaurus(scene, gltfPath, 0, 2, texturePath, 1.5, {
+    .dinosaurus(scene, gltfPath, 0, 2, 1.5, {
       x: -20,
       y: 0,
       z: -45,
@@ -230,6 +223,7 @@ lib
     .catch((error) => {
       console.log(error);
     });
+
 // let clockOuro = new THREE.Clock()
 // gltfPath = 'model/dinosaurs/ouroboros/scene.gltf'
 // texturePath = "model/dinosaurs/ouroboros/textures/snake_baseColor.png";
@@ -250,16 +244,16 @@ lib
 //     console.log(error)
 // });
 
-// let clockVelo = new THREE.Clock()
-// gltfPath = 'model/dinosaurs/velociraptor/scene.gltf'
-// texturePath = 'model/dinosaurs/velociraptor/textures/Body_Mat_baseColor.png'
-// let veloMixer
-// lib.dinosaurus(scene, gltfPath, 3, 7, texturePath, 3, {x:25, y:0, z:-40}).then(mixer => {
-//     veloMixer = mixer
-//     console.log(mixer)
-// }).catch(error => {
-//     console.log(error)
-// });
+let clockVelo = new THREE.Clock()
+gltfPath = 'model/dinosaurs/velociraptor/scene.gltf'
+let veloMixer
+lib.dinosaurus(scene, gltfPath, 3, 2.5, 4.5, {x:20, y:0, z:-60}).then(mixer => {
+    veloMixer = mixer
+    console.log("Velociraptor loaded successfully!");
+}).catch(error => {
+    console.log(error)
+    console.error("Error loading velociraptor:", error);
+});
 
 // -- Ruangan 2 -- 
 
@@ -272,7 +266,7 @@ lib.fosils(
   plateosaurus_txt,
   plateosaurus_gltf,
   2,
-  { x: 20, y: 5, z: -100 },
+  { x: 25, y: 5, z: -100 },
   30
 );
 
@@ -319,9 +313,9 @@ lib.fosils(
 // lib.fosils(scene, pteranodon_txt, pteranodon_gltf, 1, {x:20, y:3, z:-120});
 
 // Fossil Irish deer
-var deer_gltf = "model/fosils/irish_deer/scene.gltf";
-var deer_txt = "model/fosils/irish_deer/textures/legs_diffuse.png";
-lib.fosils(scene, deer_txt, deer_gltf, 5, { x: -25, y: -1, z: -80 }, 240);
+// var deer_gltf = "model/fosils/irish_deer/scene.gltf";
+// var deer_txt = "model/fosils/irish_deer/textures/legs_diffuse.png";
+// lib.fosils(scene, deer_txt, deer_gltf, 5, { x: -25, y: -1, z: -80 }, 240);
 
 // fossil sea cow
 // var cow_gltf = 'model/fosils/sea_cow/scene.gltf';
@@ -384,6 +378,7 @@ scene.add(new THREE.PointLightHelper(pointLight1, 0.2, 0x00ff00));
 
 const draw = () => {
   let delta = clock.getDelta();
+  
   proccesKeyboard(delta);
 
   if (tyranoMixer) {
@@ -398,9 +393,9 @@ const draw = () => {
   //     megaMixer.update(clockMega.getDelta());
   // }
 
-  // if (veloMixer) {
-  //     veloMixer.update(clockVelo.getDelta());
-  // }
+  if (veloMixer) {
+      veloMixer.update(clockVelo.getDelta());
+  }
 
   if (stegoMixer) {
     stegoMixer.update(clockStego.getDelta());

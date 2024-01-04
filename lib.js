@@ -53,7 +53,7 @@ export function lighting(scene) {
 }
 
 
-export function dinosaurus(scene, gltfPath, aniNUm, scl, texturePath, r, pstn) {
+export function dinosaurus(scene, gltfPath, aniNUm, scl, r, pstn) {
 
     // point light
     const pointLight1 = new THREE.PointLight(0xffffff, 200, 50)
@@ -99,22 +99,12 @@ export function dinosaurus(scene, gltfPath, aniNUm, scl, texturePath, r, pstn) {
             dino = result.scene.children[0];
             dino.scale.set(scl, scl, scl);
 
-            let textureLoader = new THREE.TextureLoader();
-            textureLoader.load(texturePath, function (texture) {
-                dino.traverse(function (child) {
-                    if (child instanceof THREE.Mesh) {
-                        child.material.map = texture;
-                        child.material.side = THREE.DoubleSide;
-                        // child.receiveShadow = true;
-                        child.castShadow = true
-                    }
-                });
-                dino.rotation.z = r
-                dino.position.set(pstn.x, pstn.y, pstn.z);
-                scene.add(dino);
+            dino.rotation.z = r
+            dino.position.set(pstn.x, pstn.y, pstn.z);
+            scene.add(dino);
 
-                resolve(mixer);
-            });
+            resolve(mixer);
+
         }, undefined, reject);
     });
 }
@@ -142,7 +132,7 @@ export function fosils(scene, fosiltxt, fosilGltf, scl, pstn, rtt) {
     });
 
     var podium_gltf = 'model/aztec_podium/scene.gltf'
-    var podium_txt = new THREE.TextureLoader().load('model/aztec_podhium/textures/None_baseColor.png');
+    var podium_txt = new THREE.TextureLoader().load('model/aztec_podium/textures/None_baseColor.png');
 
     loader.load(podium_gltf, function(podium) {
         podium.scene.traverse(function(child) {
