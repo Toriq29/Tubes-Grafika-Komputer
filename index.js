@@ -88,7 +88,7 @@ planeMesh.position.set(0, -1, 0);
 planeMesh.rotation.x = -Math.PI / 2;
 scene.add(planeMesh);
 
- // wall ruangan dino - kanan
+// wall ruangan dino - kanan
 const geometry = new THREE.BoxGeometry(0.5, 50, 50);
 const material = new THREE.MeshPhongMaterial({
   map: wall1_texture,
@@ -139,7 +139,7 @@ const geometry5 = new THREE.BoxGeometry(25, 50, 1);
 const material5 = new THREE.MeshPhongMaterial({
   map: wall1_texture,
 });
-const cube5 = new THREE.Mesh(geometry2, material2);
+const cube5 = new THREE.Mesh(geometry5, material5);
 cube5.position.set(-27, 1, -70);
 scene.add(cube5);
 
@@ -178,7 +178,7 @@ lib
     console.log(error);
   });
 
-  // dino sebelah kiri - 1
+// dino sebelah kiri - 1
 let clockPtera = new THREE.Clock();
 gltfPath = "model/dinosaurs/pteradactal/scene.gltf";
 let pteraMixer;
@@ -208,21 +208,21 @@ lib
     console.log(error);
   });
 // dino sebelah kiri - 2
-  let clockTri = new THREE.Clock();
-  gltfPath = "model/dinosaurs/triceratops/scene.gltf";
-  let triMixer;
-  lib
-    .dinosaurus(scene, gltfPath, 0, 2, 1.5, {
-      x: -20,
-      y: 0,
-      z: -45,
-    })
-    .then((mixer) => {
-      triMixer = mixer;
-    })
-    .catch((error) => {
-      console.log(error);
-    });
+let clockTri = new THREE.Clock();
+gltfPath = "model/dinosaurs/triceratops/scene.gltf";
+let triMixer;
+lib
+  .dinosaurus(scene, gltfPath, 0, 2, 1.5, {
+    x: -20,
+    y: 0,
+    z: -45,
+  })
+  .then((mixer) => {
+    triMixer = mixer;
+  })
+  .catch((error) => {
+    console.log(error);
+  });
 
 // let clockOuro = new THREE.Clock()
 // gltfPath = 'model/dinosaurs/ouroboros/scene.gltf'
@@ -247,12 +247,12 @@ lib
 let clockVelo = new THREE.Clock()
 gltfPath = 'model/dinosaurs/velociraptor/scene.gltf'
 let veloMixer
-lib.dinosaurus(scene, gltfPath, 3, 2.5, 4.5, {x:20, y:0, z:-60}).then(mixer => {
-    veloMixer = mixer
-    console.log("Velociraptor loaded successfully!");
+lib.dinosaurus(scene, gltfPath, 3, 2.5, 4.5, { x: 20, y: 0, z: -60 }).then(mixer => {
+  veloMixer = mixer
+  console.log("Velociraptor loaded successfully!");
 }).catch(error => {
-    console.log(error)
-    console.error("Error loading velociraptor:", error);
+  console.log(error)
+  console.error("Error loading velociraptor:", error);
 });
 
 // -- Ruangan 2 -- 
@@ -375,10 +375,47 @@ pointLight1.castShadow = true;
 scene.add(pointLight1);
 scene.add(new THREE.PointLightHelper(pointLight1, 0.2, 0x00ff00));
 
+// Membuat tembok tidak dapat ditembus
+controls.prevPosition = new THREE.Vector3();
+
+function checkCollision() {
+  const camPos = controls.getObject().position;
+  const minDistance = 2;
+
+  // const cubes = [cube, cube1, cube2, cube3, cube4, cube5, cube6, cube7];
+  const cubes = [cube, cube1, cube3, cube4];
+
+  let collided = false; 
+
+  for (let i = 0; i < cubes.length; i++) {
+    const cubePos = cubes[i].position;
+    const cubeWidth = 0.5;
+    const cubeDepth = 50;
+
+    const distanceX = Math.abs(camPos.x - cubePos.x);
+    const distanceZ = Math.abs(camPos.z - cubePos.z);
+
+    if (
+      distanceX < (cubeWidth / 2 + minDistance) &&
+      distanceZ < (cubeDepth / 2 + minDistance)
+    ) {
+      collided = true; 
+      break; 
+    }
+  }
+
+  if (collided) {
+    controls.getObject().position.copy(controls.prevPosition);
+  } else {
+    controls.prevPosition.copy(controls.getObject().position);
+  }
+}
+
+
 
 const draw = () => {
   let delta = clock.getDelta();
-  
+
   proccesKeyboard(delta);
 
   if (tyranoMixer) {
@@ -394,7 +431,7 @@ const draw = () => {
   // }
 
   if (veloMixer) {
-      veloMixer.update(clockVelo.getDelta());
+    veloMixer.update(clockVelo.getDelta());
   }
 
   if (stegoMixer) {
@@ -409,6 +446,7 @@ const draw = () => {
     triMixer.update(clockTri.getDelta());
   }
 
+  checkCollision();
   renderer.render(scene, cam);
   requestAnimationFrame(draw);
 };
