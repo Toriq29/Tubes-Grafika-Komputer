@@ -178,6 +178,16 @@ lib
     console.log(error);
   });
 
+  
+// LIGHT TENGAH RUANGAN 1
+const pointLight2 = new THREE.PointLight(0xfff380, 200, 50)
+pointLight2.position.set(0, 20, -30)
+pointLight2.castShadow = true
+
+scene.add(pointLight2)
+scene.add(new THREE.PointLightHelper(pointLight2, 0.2, 0x00ff00))
+
+
 // dino sebelah kiri - 1
 let clockPtera = new THREE.Clock();
 gltfPath = "model/dinosaurs/pteradactal/scene.gltf";
@@ -385,7 +395,7 @@ function checkCollision() {
   // const cubes = [cube, cube1, cube2, cube3, cube4, cube5, cube6, cube7];
   const cubes = [cube, cube1, cube3, cube4];
 
-  let collided = false; 
+  let collided = false;
 
   for (let i = 0; i < cubes.length; i++) {
     const cubePos = cubes[i].position;
@@ -399,8 +409,8 @@ function checkCollision() {
       distanceX < (cubeWidth / 2 + minDistance) &&
       distanceZ < (cubeDepth / 2 + minDistance)
     ) {
-      collided = true; 
-      break; 
+      collided = true;
+      break;
     }
   }
 
