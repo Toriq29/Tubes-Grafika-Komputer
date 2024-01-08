@@ -1,6 +1,6 @@
 import * as THREE from "./node_modules/three/build/three.module.js";
 
-import * as lib from "./lib2.js";
+import * as lib from "./lib.js";
 
 import * as GLTFLoader from "./node_modules/three/examples/jsm/loaders/GLTFLoader.js";
 
@@ -88,7 +88,7 @@ planeMesh.position.set(0, -1, 0);
 planeMesh.rotation.x = -Math.PI / 2;
 scene.add(planeMesh);
 
-// wall ruangan dino - kanan
+ // wall ruangan dino - kanan
 const geometry = new THREE.BoxGeometry(0.5, 50, 50);
 const material = new THREE.MeshPhongMaterial({
   map: wall1_texture,
@@ -139,7 +139,7 @@ const geometry5 = new THREE.BoxGeometry(25, 50, 1);
 const material5 = new THREE.MeshPhongMaterial({
   map: wall1_texture,
 });
-const cube5 = new THREE.Mesh(geometry5, material5);
+const cube5 = new THREE.Mesh(geometry2, material2);
 cube5.position.set(-27, 1, -70);
 scene.add(cube5);
 
@@ -164,9 +164,11 @@ scene.add(cube7);
 // dino sebelah kanan - 1
 let clockTyrano = new THREE.Clock();
 let gltfPath = "model/dinosaurs/tyranosaurus/scene.gltf";
+let texturePath =
+  "model/dinosaurs/tyranosaurus/textures/material_0_specularGlossiness.png";
 let tyranoMixer;
 lib
-  .dinosaurus(scene, gltfPath, 2, 1.7, 4.9, {
+  .dinosaurus(scene, gltfPath, 2, 1.7, texturePath, 4.9, {
     x: 20,
     y: 0,
     z: -30,
@@ -178,22 +180,13 @@ lib
     console.log(error);
   });
 
-  
-// LIGHT TENGAH RUANGAN 1
-const pointLight2 = new THREE.PointLight(0xfff380, 200, 50)
-pointLight2.position.set(0, 20, -30)
-pointLight2.castShadow = true
-
-scene.add(pointLight2)
-scene.add(new THREE.PointLightHelper(pointLight2, 0.2, 0x00ff00))
-
-
-// dino sebelah kiri - 1
+  // dino sebelah kiri - 1
 let clockPtera = new THREE.Clock();
 gltfPath = "model/dinosaurs/pteradactal/scene.gltf";
+texturePath = "model/dinosaurs/pteradactal/textures/material0_baseColor.png";
 let pteraMixer;
 lib
-  .dinosaurus(scene, gltfPath, 0, 2.5, 1.5, {
+  .dinosaurus(scene, gltfPath, 0, 2.5, texturePath, 1.5, {
     x: -20,
     y: 0,
     z: -30,
@@ -208,9 +201,11 @@ lib
 // dino sebelah kanan - 2
 let clockStego = new THREE.Clock();
 gltfPath = "model/dinosaurs/stegosaurus/scene.gltf";
+texturePath =
+  "model/dinosaurs/stegosaurus/textures/CH_NPC_MOB_Stego_A01_MI_HAY_normal.png";
 let stegoMixer;
 lib
-  .dinosaurus(scene, gltfPath, 3, 7, 3, { x: 20, y: 0, z: -45 })
+  .dinosaurus(scene, gltfPath, 3, 7, texturePath, 3, { x: 20, y: 0, z: -45 })
   .then((mixer) => {
     stegoMixer = mixer;
   })
@@ -218,22 +213,23 @@ lib
     console.log(error);
   });
 // dino sebelah kiri - 2
-let clockTri = new THREE.Clock();
-gltfPath = "model/dinosaurs/triceratops/scene.gltf";
-let triMixer;
-lib
-  .dinosaurus(scene, gltfPath, 0, 2, 1.5, {
-    x: -20,
-    y: 0,
-    z: -45,
-  })
-  .then((mixer) => {
-    triMixer = mixer;
-  })
-  .catch((error) => {
-    console.log(error);
-  });
-
+  let clockTri = new THREE.Clock();
+  gltfPath = "model/dinosaurs/triceratops/scene.gltf";
+  texturePath =
+    "model/dinosaurs/triceratops/textures/sanjiaolong_baseColor.png";
+  let triMixer;
+  lib
+    .dinosaurus(scene, gltfPath, 0, 2, texturePath, 1.5, {
+      x: -20,
+      y: 0,
+      z: -45,
+    })
+    .then((mixer) => {
+      triMixer = mixer;
+    })
+    .catch((error) => {
+      console.log(error);
+    });
 // let clockOuro = new THREE.Clock()
 // gltfPath = 'model/dinosaurs/ouroboros/scene.gltf'
 // texturePath = "model/dinosaurs/ouroboros/textures/snake_baseColor.png";
@@ -254,16 +250,16 @@ lib
 //     console.log(error)
 // });
 
-let clockVelo = new THREE.Clock()
-gltfPath = 'model/dinosaurs/velociraptor/scene.gltf'
-let veloMixer
-lib.dinosaurus(scene, gltfPath, 3, 2.5, 4.5, { x: 20, y: 0, z: -60 }).then(mixer => {
-  veloMixer = mixer
-  console.log("Velociraptor loaded successfully!");
-}).catch(error => {
-  console.log(error)
-  console.error("Error loading velociraptor:", error);
-});
+// let clockVelo = new THREE.Clock()
+// gltfPath = 'model/dinosaurs/velociraptor/scene.gltf'
+// texturePath = 'model/dinosaurs/velociraptor/textures/Body_Mat_baseColor.png'
+// let veloMixer
+// lib.dinosaurus(scene, gltfPath, 3, 7, texturePath, 3, {x:25, y:0, z:-40}).then(mixer => {
+//     veloMixer = mixer
+//     console.log(mixer)
+// }).catch(error => {
+//     console.log(error)
+// });
 
 // -- Ruangan 2 -- 
 
@@ -276,7 +272,7 @@ lib.fosils(
   plateosaurus_txt,
   plateosaurus_gltf,
   2,
-  { x: 25, y: 5, z: -100 },
+  { x: 20, y: 5, z: -100 },
   30
 );
 
@@ -313,9 +309,9 @@ lib.fosils(
 );
 
 // Fosil mammoth // ini di comment dlu bentar
-// var mammoth_gltf = 'model/fosils/mammoth/scene.gltf';
-// var mammoth_txt = 'model/fosils/mammoth/textures/material_0_baseColor.jpeg';
-// lib.fosils(scene, mammoth_txt, mammoth_gltf, 0.5, { x: 0, y: -1, z: -85 }, 0);
+var mammoth_gltf = 'model/fosils/mammoth/scene.gltf';
+var mammoth_txt = 'model/fosils/mammoth/textures/material_0_baseColor.jpeg';
+lib.fosils(scene, mammoth_txt, mammoth_gltf, 0.5, { x: 0, y: -1, z: -85 }, 0);
 
 // Fosil Pteranodon
 // var pteranodon_gltf = 'model/fosils/pteranodon_skeleton/scene.gltf';
@@ -385,47 +381,9 @@ pointLight1.castShadow = true;
 scene.add(pointLight1);
 scene.add(new THREE.PointLightHelper(pointLight1, 0.2, 0x00ff00));
 
-// Membuat tembok tidak dapat ditembus
-controls.prevPosition = new THREE.Vector3();
-
-function checkCollision() {
-  const camPos = controls.getObject().position;
-  const minDistance = 2;
-
-  // const cubes = [cube, cube1, cube2, cube3, cube4, cube5, cube6, cube7];
-  const cubes = [cube, cube1, cube3, cube4];
-
-  let collided = false;
-
-  for (let i = 0; i < cubes.length; i++) {
-    const cubePos = cubes[i].position;
-    const cubeWidth = 0.5;
-    const cubeDepth = 50;
-
-    const distanceX = Math.abs(camPos.x - cubePos.x);
-    const distanceZ = Math.abs(camPos.z - cubePos.z);
-
-    if (
-      distanceX < (cubeWidth / 2 + minDistance) &&
-      distanceZ < (cubeDepth / 2 + minDistance)
-    ) {
-      collided = true;
-      break;
-    }
-  }
-
-  if (collided) {
-    controls.getObject().position.copy(controls.prevPosition);
-  } else {
-    controls.prevPosition.copy(controls.getObject().position);
-  }
-}
-
-
 
 const draw = () => {
   let delta = clock.getDelta();
-
   proccesKeyboard(delta);
 
   if (tyranoMixer) {
@@ -440,9 +398,9 @@ const draw = () => {
   //     megaMixer.update(clockMega.getDelta());
   // }
 
-  if (veloMixer) {
-    veloMixer.update(clockVelo.getDelta());
-  }
+  // if (veloMixer) {
+  //     veloMixer.update(clockVelo.getDelta());
+  // }
 
   if (stegoMixer) {
     stegoMixer.update(clockStego.getDelta());
@@ -456,7 +414,6 @@ const draw = () => {
     triMixer.update(clockTri.getDelta());
   }
 
-  checkCollision();
   renderer.render(scene, cam);
   requestAnimationFrame(draw);
 };
