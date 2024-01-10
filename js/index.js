@@ -39,17 +39,33 @@ window.addEventListener("load", () => {
   }, 4000);
 });
 
+// let btn1 = document.querySelector("#button1");
+// btn1.addEventListener("click", () => {
+//   controls.lock();
+// });
+
+// controls.addEventListener("lock", () => {
+//   btn1.innerHTML = "Locked";
+// });
+
+// controls.addEventListener("unlock", () => {
+//   btn1.innerHTML = "Unlocked";
+// });
 let btn1 = document.querySelector("#button1");
+let eyeIcon = document.getElementById("eyeIcon");
+
 btn1.addEventListener("click", () => {
   controls.lock();
 });
 
 controls.addEventListener("lock", () => {
-  btn1.innerHTML = "Locked";
+  eyeIcon.classList.remove("fa-eye");
+  eyeIcon.classList.add("fa-eye-slash");
 });
 
 controls.addEventListener("unlock", () => {
-  btn1.innerHTML = "Unlocked";
+  eyeIcon.classList.remove("fa-eye-slash");
+  eyeIcon.classList.add("fa-eye");
 });
 
 let keyboard = [];
