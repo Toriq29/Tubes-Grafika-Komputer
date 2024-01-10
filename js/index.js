@@ -2,6 +2,8 @@ import * as THREE from "../node_modules/three/build/three.module.js";
 import * as GLTFLoader from "../node_modules/three/examples/jsm/loaders/GLTFLoader.js";
 import * as pointerLock from "../node_modules/three/examples/jsm/controls/PointerLockControls.js";
 import * as lib from "./lib.js";
+import * as wall from "./wall.js";
+import * as dino from "./dino.js";
 
 let cam = new THREE.PerspectiveCamera(
   45,
@@ -25,14 +27,14 @@ document.body.appendChild(renderer.domElement);
 window.addEventListener("load", () => {
   const loader = document.querySelector(".loader");
   const button1 = document.getElementById("button1");
-  
-  setTimeout(() => {
-      loader.classList.add("loader--hidden");
 
-      loader.addEventListener("transitionend", () => {
-          document.body.removeChild(loader);
-          button1.classList.add("button1--visible");
-      });
+  setTimeout(() => {
+    loader.classList.add("loader--hidden");
+
+    loader.addEventListener("transitionend", () => {
+      document.body.removeChild(loader);
+      button1.classList.add("button1--visible");
+    });
   }, 7000);
 });
 
@@ -94,84 +96,39 @@ planeMesh.position.set(0, -1, 0);
 planeMesh.rotation.x = -Math.PI / 2;
 scene.add(planeMesh);
 
- // wall ruangan dino - kanan
-const geometry = new THREE.BoxGeometry(0.5, 50, 50);
-const material = new THREE.MeshPhongMaterial({
-  map: wall1_texture,
-});
-const cube = new THREE.Mesh(geometry, material);
-cube.position.set(40, 1, -50);
-cube.receiveShadow = true;
-scene.add(cube);
+// WALL
 
-// wall ruangan dino - kiri
-const geometry1 = new THREE.BoxGeometry(0.5, 50, 50);
-const material1 = new THREE.MeshPhongMaterial({
-  map: wall1_texture,
-});
-const cube1 = new THREE.Mesh(geometry1, material1);
-cube1.position.set(-40, 1, -50);
-scene.add(cube1);
+// Wall Ruang Dino - Kanan
+const cube = wall.createWall(0.5, 50, 50, 40, 1, -50, wall1_texture, scene);
 
-// wall pembatas pertama - kanan
-const geometry2 = new THREE.BoxGeometry(25, 50, 1);
-const material2 = new THREE.MeshPhongMaterial({
-  map: wall1_texture,
-});
-const cube2 = new THREE.Mesh(geometry2, material2);
-cube2.position.set(27, 1, -70);
-scene.add(cube2);
+// Wall Ruang Dino - Kiri
+const cube1 = wall.createWall(0.5, 50, 50, -40, 1, -50, wall1_texture, scene);
 
-// wall ruangan fossil - kanan 
-const geometry3 = new THREE.BoxGeometry(0.5, 50, 150);
-const material3 = new THREE.MeshPhongMaterial({
-  map: wall2_texture,
-});
-const cube3 = new THREE.Mesh(geometry3, material3);
-cube3.position.set(40, 1, -150);
-scene.add(cube3);
+// Wall Pembatas Pertama - Kanan
+const cube2 = wall.createWall(25, 50, 1, 27, 1, -70, wall1_texture, scene);
 
-// wall ruangan fossil - kiri
-const geometry4 = new THREE.BoxGeometry(0.5, 50, 150);
-const material4 = new THREE.MeshPhongMaterial({
-  map: wall2_texture,
-});
-const cube4 = new THREE.Mesh(geometry4, material4);
-cube4.position.set(-40, 1, -150);
-scene.add(cube4);
+// Wall Ruang Fossil - Kanan
+const cube3 = wall.createWall(0.5, 50, 150, 40, 1, -150, wall2_texture, scene);
 
-// wall pembatas pertama - kiri
-const geometry5 = new THREE.BoxGeometry(25, 50, 1);
-const material5 = new THREE.MeshPhongMaterial({
-  map: wall1_texture,
-});
-const cube5 = new THREE.Mesh(geometry2, material2);
-cube5.position.set(-27, 1, -70);
-scene.add(cube5);
+// Wall Ruang Fossil - Kiri
+const cube4 = wall.createWall(0.5, 50, 150, -40, 1, -150, wall2_texture, scene);
 
-// wall pembatas kedua - kiri
-const geometry6 = new THREE.BoxGeometry(25, 50, 1);
-const material6 = new THREE.MeshPhongMaterial({
-  map: wall3_texture,
-});
-const cube6 = new THREE.Mesh(geometry6, material6);
-cube6.position.set(-27, 1, -140);
-scene.add(cube6);
+// Wall Pembatas Pertama - Kiri
+const cube5 = wall.createWall(25, 50, 1, -27, 1, -70, wall1_texture, scene);
 
-// wall pembatas kedua - kanan
-const geometry7 = new THREE.BoxGeometry(25, 50, 1);
-const material7 = new THREE.MeshPhongMaterial({
-  map: wall3_texture,
-});
-const cube7 = new THREE.Mesh(geometry7, material7);
-cube7.position.set(27, 1, -140);
-scene.add(cube7);
+// Wall Pembatas Kedua - Kiri
+const cube6 = wall.createWall(25, 50, 1, -27, 1, -140, wall3_texture, scene);
 
-// dino sebelah kanan - 1
+// Wall Pembatas Kedua - Kanan
+const cube7 = wall.createWall(25, 50, 1, 27, 1, -140, wall3_texture, scene);
+
+// DINO
+
+// Dino Kanan - 1
 let clockTyrano = new THREE.Clock();
 let gltfPath = "./model/dinosaurs/tyranosaurus/scene.gltf";
 let tyranoMixer;
-lib
+dino
   .dinosaurus(scene, gltfPath, 2, 1.7, 4.9, {
     x: 20,
     y: 0,
@@ -184,11 +141,11 @@ lib
     console.log(error);
   });
 
-// dino sebelah kiri - 1
+// Dino Kiri - 1
 let clockPtera = new THREE.Clock();
 gltfPath = "./model/dinosaurs/pteradactal/scene.gltf";
 let pteraMixer;
-lib
+dino
   .dinosaurus(scene, gltfPath, 0, 2.5, 1.5, {
     x: -20,
     y: 0,
@@ -201,11 +158,11 @@ lib
     console.log(error);
   });
 
-// dino sebelah kanan - 2
+// Dino Kanan - 2
 let clockStego = new THREE.Clock();
 gltfPath = "./model/dinosaurs/stegosaurus/scene.gltf";
 let stegoMixer;
-lib
+dino
   .dinosaurus(scene, gltfPath, 3, 7, 3, { x: 20, y: 0, z: -45 })
   .then((mixer) => {
     stegoMixer = mixer;
@@ -213,32 +170,34 @@ lib
   .catch((error) => {
     console.log(error);
   });
-// dino sebelah kiri - 2
-  let clockTri = new THREE.Clock();
-  gltfPath = "./model/dinosaurs/triceratops/scene.gltf";
-  let triMixer;
-  lib
-    .dinosaurus(scene, gltfPath, 0, 2, 1.5, {
-      x: -20,
-      y: 0,
-      z: -45,
-    })
-    .then((mixer) => {
-      triMixer = mixer;
-    })
-    .catch((error) => {
-      console.log(error);
-    });
 
+// Dino Kiri - 2
+let clockTri = new THREE.Clock();
+gltfPath = "./model/dinosaurs/triceratops/scene.gltf";
+let triMixer;
+dino
+  .dinosaurus(scene, gltfPath, 0, 2, 1.5, {
+    x: -20,
+    y: 0,
+    z: -45,
+  })
+  .then((mixer) => {
+    triMixer = mixer;
+  })
+  .catch((error) => {
+    console.log(error);
+  });
+
+// Dino Kanan - 3
 let clockVelo = new THREE.Clock()
 gltfPath = './model/dinosaurs/velociraptor/scene.gltf'
 let veloMixer
-lib.dinosaurus(scene, gltfPath, 3, 2.5, 4.5, {x:20, y:0, z:-60}).then(mixer => {
-    veloMixer = mixer
-    console.log("Velociraptor loaded successfully!");
+dino.dinosaurus(scene, gltfPath, 3, 2.5, 4.5, { x: 20, y: 0, z: -60 }).then(mixer => {
+  veloMixer = mixer
+  console.log("Velociraptor loaded successfully!");
 }).catch(error => {
-    console.log(error)
-    console.error("Error loading velociraptor:", error);
+  console.log(error)
+  console.error("Error loading velociraptor:", error);
 });
 
 // -- Ruangan 2 -- 
@@ -318,7 +277,7 @@ cam.add(pendengar);
 // function draw
 const draw = () => {
   let delta = clock.getDelta();
-  
+
   proccesKeyboard(delta);
 
   if (tyranoMixer) {
@@ -330,7 +289,7 @@ const draw = () => {
   }
 
   if (veloMixer) {
-      veloMixer.update(clockVelo.getDelta());
+    veloMixer.update(clockVelo.getDelta());
   }
 
   if (stegoMixer) {
