@@ -1,9 +1,10 @@
 import * as THREE from "../node_modules/three/build/three.module.js";
 import * as GLTFLoader from "../node_modules/three/examples/jsm/loaders/GLTFLoader.js";
 import * as pointerLock from "../node_modules/three/examples/jsm/controls/PointerLockControls.js";
-import * as lib from "./lib.js";
+// import * as lib from "./lib.js";
 import * as wall from "./wall.js";
 import * as dino from "./dino.js";
+import * as fossil from "./fossil.js";
 
 let cam = new THREE.PerspectiveCamera(
   45,
@@ -35,7 +36,7 @@ window.addEventListener("load", () => {
       document.body.removeChild(loader);
       button1.classList.add("button1--visible");
     });
-  }, 7000);
+  }, 4000);
 });
 
 let btn1 = document.querySelector("#button1");
@@ -117,10 +118,10 @@ const cube4 = wall.createWall(0.5, 50, 150, -40, 1, -150, wall2_texture, scene);
 const cube5 = wall.createWall(25, 50, 1, -27, 1, -70, wall1_texture, scene);
 
 // Wall Pembatas Kedua - Kiri
-const cube6 = wall.createWall(25, 50, 1, -27, 1, -140, wall3_texture, scene);
+const cube6 = wall.createWall(55, 50, 1, -27, 1, -140, wall3_texture, scene);
 
 // Wall Pembatas Kedua - Kanan
-const cube7 = wall.createWall(25, 50, 1, 27, 1, -140, wall3_texture, scene);
+const cube7 = wall.createWall(55, 50, 1, 27, 1, -140, wall3_texture, scene);
 
 // DINO
 
@@ -202,11 +203,11 @@ dino.dinosaurus(scene, gltfPath, 3, 2.5, 4.5, { x: 20, y: 0, z: -60 }).then(mixe
 
 // -- Ruangan 2 -- 
 
-// Fosil plateosaurus - kanan tengah
+// Fosil plateosaurus - kanan pertama
 var plateosaurus_gltf = "./model/fosils/plateosaurus_skeleton/scene.gltf";
 var plateosaurus_txt =
   "./model/fosils/plateosaurus_skeleton/textures/material_0_diffuse.png";
-lib.fosils(
+fossil.fossils(
   scene,
   plateosaurus_txt,
   plateosaurus_gltf,
@@ -215,17 +216,17 @@ lib.fosils(
   30
 );
 
-// Fosil Dodo - kiri tengah
+// Fosil Dodo - kiri pertama
 var dodo_gltf = "./model/fosils/dodo_skeleton/scene.gltf";
 var dodo_txt =
   "./model/fosils/plateosaurus_skeleton/textures/material_0_diffuse.png";
-lib.fosils(scene, dodo_txt, dodo_gltf, 2, { x: -25, y: 5, z: -100 }, -30);
+fossil.fossils(scene, dodo_txt, dodo_gltf, 2, { x: -25, y: 5, z: -100 }, -30);
 
-// Fosil Triceratops - kiri terakhir
+// Fosil Triceratops - kiri kedua
 var triceratops_gltf = "./model/fosils/triceratops_skeleton/scene.gltf";
 var triceratops_txt =
   "./model/fosils/triceratops_skeleton/textures/default_baseColor.png";
-lib.fosils(
+fossil.fossils(
   scene,
   triceratops_txt,
   triceratops_gltf,
@@ -234,11 +235,11 @@ lib.fosils(
   -30
 );
 
-// Fosil Tyrannosaurus - kanan terakhir
+// Fosil Tyrannosaurus - kanan kedua
 var tyrannosaurus_gltf = "./model/fosils/tyrannosaurus_rex_skeleton/scene.gltf";
 var tyrannosaurus_txt =
   "./model/fosils/tyrannosaurus_rex_skeleton/textures/dyno_tex_Material_u1_v1_baseColor.jpeg";
-lib.fosils(
+fossil.fossils(
   scene,
   tyrannosaurus_txt,
   tyrannosaurus_gltf,
@@ -246,8 +247,12 @@ lib.fosils(
   { x: 25, y: 1, z: -120 },
   30
 );
+// Fosil mammoth // ini di comment dlu bentar
+// var mammoth_gltf = 'model/fosils/mammoth/scene.gltf';
+// var mammoth_txt = 'model/fosils/mammoth/textures/material_0_baseColor.jpeg';
+// fossil.fossils(scene, mammoth_txt, mammoth_gltf, 0.5, { x: 0, y: -1, z: -85 }, 0);
 
-// gate antara ruangan 1 dan 2
+// Gate antara ruangan 1 dan 2
 let cieza;
 let loaderr = new GLTFLoader.GLTFLoader().load(
   "./model/museum_wall/cieza/scene.gltf",
@@ -256,13 +261,11 @@ let loaderr = new GLTFLoader.GLTFLoader().load(
     cieza.scale.set(1.5, 1.5, 1.5);
     cieza.position.set(0, 2, -75);
     cieza.rotation.x = 0.8;
-
-    // cieza.material = new THREE.Mesh({ receivesShadow: true });
     scene.add(cieza);
   }
 );
 
-// lighting
+// lighting tengah
 const pointLight1 = new THREE.PointLight(0xffffff, 200, 50);
 pointLight1.position.set(0, 35, 0);
 pointLight1.castShadow = true;
