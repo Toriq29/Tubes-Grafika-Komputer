@@ -230,26 +230,6 @@ lib
       console.log(error);
     });
 
-// let clockOuro = new THREE.Clock()
-// gltfPath = './model/dinosaurs/ouroboros/scene.gltf'
-// texturePath = "./model/dinosaurs/ouroboros/textures/snake_baseColor.png";
-// let ouroMixer
-// lib.dinosaurus(scene, gltfPath, 1, 7, texturePath, 2, {x: 30, y:0, z: -60}).then(mixer => {
-//     ouroMixer = mixer
-// }).catch(error=> {
-//         console.log(error)
-// });
-
-// let clockMega = new THREE.Clock()
-// gltfPath = './model/dinosaurs/megalodon/scene.gltf'
-// texturePath = './model/dinosaurs/megalodon/textures/material_0_clearcoat_roughness.png'
-// let megaMixer
-// lib.dinosaurus(three.scene, gltfPath, 0, 2, texturePath, {x:10, y:0, z:-10}).then(mixer => {
-//     megaMixer = mixer
-// }).catch(error => {
-//     console.log(error)
-// });
-
 let clockVelo = new THREE.Clock()
 gltfPath = './model/dinosaurs/velociraptor/scene.gltf'
 let veloMixer
@@ -308,26 +288,6 @@ lib.fosils(
   30
 );
 
-// Fosil mammoth // ini di comment dlu bentar
-// var mammoth_gltf = './model/fosils/mammoth/scene.gltf';
-// var mammoth_txt = './model/fosils/mammoth/textures/material_0_baseColor.jpeg';
-// lib.fosils(scene, mammoth_txt, mammoth_gltf, 0.5, { x: 0, y: -1, z: -85 }, 0);
-
-// Fosil Pteranodon
-// var pteranodon_gltf = './model/fosils/pteranodon_skeleton/scene.gltf';
-// var pteranodon_txt = './model/fosils/plateosaurus_skeleton/textures/material_0_diffuse.png';
-// lib.fosils(scene, pteranodon_txt, pteranodon_gltf, 1, {x:20, y:3, z:-120});
-
-// // Fossil Irish deer
-// var deer_gltf = "./model/fosils/irish_deer/scene.gltf";
-// var deer_txt = "./model/fosils/irish_deer/textures/legs_diffuse.png";
-// lib.fosils(scene, deer_txt, deer_gltf, 5, { x: -25, y: -1, z: -80 }, 240);
-
-// fossil sea cow
-// var cow_gltf = './model/fosils/sea_cow/scene.gltf';
-// var cow_txt = './model/fosils/sea_cow/textures/material_0_baseColor.png';
-// lib.fosils(scene, cow_txt, cow_gltf, 7, {x: 20, y:3, z:-80}, 0);
-
 // gate antara ruangan 1 dan 2
 let cieza;
 let loaderr = new GLTFLoader.GLTFLoader().load(
@@ -343,35 +303,6 @@ let loaderr = new GLTFLoader.GLTFLoader().load(
   }
 );
 
-// untuk barrier di setiap ./model (belum bisa)
-// var barrier_gltf = "./model/barrier/scene.gltf";
-// var barrier_txt = new THREE.TextureLoader().load(
-//   "./model/barrier/textures/Scene_Root_baseColor.png"
-// );
-// var loader = new GLTFLoader.GLTFLoader();
-
-// loader.load(barrier_gltf, function (barrier) {
-//   barrier.traverse(function (child) {
-//     if (child.isMesh) {
-//       child.material.map = barrier_txt;
-//     }
-//   });
-//   barrier.position.set(0, 1, -40);
-//   barrier.scale.set(0.5, 0.5, 0.5);
-//   scene.add(barrier);
-// });
-
-// let barrier;
-// let loaderrr = new GLTFLoader.GLTFLoader().load("./model/barrier/scene.gltf", function (result) {
-//   barrier = result.scene.children[0];
-//   barrier.scale.set(2, 2, 2);
-//   barrier.position.set(0, 10, -50);
-//   barrier.rotation.x = 0.8;
-
-//   scene.add(barrier);
-//   console.log("test")
-// });
-
 // lighting
 const pointLight1 = new THREE.PointLight(0xffffff, 200, 50);
 pointLight1.position.set(0, 35, 0);
@@ -380,11 +311,11 @@ pointLight1.castShadow = true;
 scene.add(pointLight1);
 scene.add(new THREE.PointLightHelper(pointLight1, 0.2, 0x00ff00));
 
+// audio
 let pendengar = new THREE.AudioListener();
 cam.add(pendengar);
 
-
-
+// function draw
 const draw = () => {
   let delta = clock.getDelta();
   
@@ -398,10 +329,6 @@ const draw = () => {
     pteraMixer.update(clockPtera.getDelta());
   }
 
-  // if (megaMixer) {
-  //     megaMixer.update(clockMega.getDelta());
-  // }
-
   if (veloMixer) {
       veloMixer.update(clockVelo.getDelta());
   }
@@ -409,10 +336,6 @@ const draw = () => {
   if (stegoMixer) {
     stegoMixer.update(clockStego.getDelta());
   }
-
-  // if (ouroMixer) {
-  //   ouroMixer.update(clockOuro.getDelta());
-  // }
 
   if (triMixer) {
     triMixer.update(clockTri.getDelta());
