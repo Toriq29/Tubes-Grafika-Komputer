@@ -13,7 +13,7 @@ let cam = new THREE.PerspectiveCamera(
   1000
 );
 cam.position.z = 7;
-cam.position.y = 1;
+cam.position.y = 3;
 
 const scene = new THREE.Scene();
 const renderer = new THREE.WebGLRenderer({ antialias: true });
@@ -100,11 +100,18 @@ function proccesKeyboard(delta) {
 const wall1_texture = new THREE.TextureLoader().load("./assets/texture/wall.jpg");
 const wall2_texture = new THREE.TextureLoader().load("./assets/texture/wall2.jpg");
 const wall3_texture = new THREE.TextureLoader().load("./assets/texture/wall3.avif");
+const plane_texture = new THREE.TextureLoader().load("./assets/texture/wood.jpg");
 
+plane_texture.wrapS = THREE.RepeatWrapping;
+plane_texture.wrapT = THREE.RepeatWrapping;
+plane_texture.repeat.set(50, 50)
 // plane
 var plane = new THREE.PlaneGeometry(1000, 1000, 500, 500);
 var planeMaterial = new THREE.MeshLambertMaterial({
   color: 0xfffff0,
+  roughness: 0.5,
+  metalness: 1,
+  map: plane_texture,
 });
 
 var planeMesh = new THREE.Mesh(plane, planeMaterial);
@@ -116,28 +123,28 @@ scene.add(planeMesh);
 // WALL
 
 // Wall Ruang Dino - Kanan
-const cube = wall.createWall(0.5, 50, 50, 40, 1, -50, wall1_texture, scene);
+const cube = wall.createWall(0.5, 58, 50, 40, 1, -50, wall1_texture, scene);
 
 // Wall Ruang Dino - Kiri
-const cube1 = wall.createWall(0.5, 50, 50, -40, 1, -50, wall1_texture, scene);
+const cube1 = wall.createWall(0.5, 58, 50, -40, 1, -50, wall1_texture, scene);
 
 // Wall Pembatas Pertama - Kanan
-const cube2 = wall.createWall(25, 50, 1, 27, 1, -70, wall1_texture, scene);
+const cube2 = wall.createWall(25, 58, 1, 27, 1, -70, wall1_texture, scene);
 
 // Wall Ruang Fossil - Kanan
-const cube3 = wall.createWall(0.5, 50, 150, 40, 1, -150, wall2_texture, scene);
+const cube3 = wall.createWall(0.5, 58, 150, 40, 1, -150, wall2_texture, scene);
 
 // Wall Ruang Fossil - Kiri
-const cube4 = wall.createWall(0.5, 50, 150, -40, 1, -150, wall2_texture, scene);
+const cube4 = wall.createWall(0.5, 58, 150, -40, 1, -150, wall2_texture, scene);
 
 // Wall Pembatas Pertama - Kiri
-const cube5 = wall.createWall(25, 50, 1, -27, 1, -70, wall1_texture, scene);
+const cube5 = wall.createWall(25, 58, 1, -27, 1, -70, wall1_texture, scene);
 
 // Wall Pembatas Kedua - Kiri
-const cube6 = wall.createWall(55, 50, 1, -27, 1, -140, wall3_texture, scene);
+const cube6 = wall.createWall(55, 58, 1, -27, 1, -140, wall3_texture, scene);
 
 // Wall Pembatas Kedua - Kanan
-const cube7 = wall.createWall(55, 50, 1, 27, 1, -140, wall3_texture, scene);
+const cube7 = wall.createWall(55, 58, 1, 27, 1, -140, wall3_texture, scene);
 
 // DINO
 
