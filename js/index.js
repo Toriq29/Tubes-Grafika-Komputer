@@ -34,38 +34,25 @@ window.addEventListener("load", () => {
 
     loader.addEventListener("transitionend", () => {
       document.body.removeChild(loader);
-      button1.classList.add("button1--visible");
+      button1.style.opacity = "1";
     });
   }, 4000);
 });
 
-// let btn1 = document.querySelector("#button1");
-// btn1.addEventListener("click", () => {
-//   controls.lock();
-// });
-
-// controls.addEventListener("lock", () => {
-//   btn1.innerHTML = "Locked";
-// });
-
-// controls.addEventListener("unlock", () => {
-//   btn1.innerHTML = "Unlocked";
-// });
 let btn1 = document.querySelector("#button1");
-let eyeIcon = document.getElementById("eyeIcon");
+let textPress = document.getElementById("textPress");
 
 btn1.addEventListener("click", () => {
   controls.lock();
 });
 
 controls.addEventListener("lock", () => {
-  eyeIcon.classList.remove("fa-eye");
-  eyeIcon.classList.add("fa-eye-slash");
+  btn1.style.opacity = "0";
 });
 
 controls.addEventListener("unlock", () => {
-  eyeIcon.classList.remove("fa-eye-slash");
-  eyeIcon.classList.add("fa-eye");
+  textPress.innerText = "Press To View";
+  btn1.style.opacity = "1";
 });
 
 let keyboard = [];
@@ -105,6 +92,7 @@ const plane_texture = new THREE.TextureLoader().load("./assets/texture/wood.jpg"
 plane_texture.wrapS = THREE.RepeatWrapping;
 plane_texture.wrapT = THREE.RepeatWrapping;
 plane_texture.repeat.set(50, 50)
+
 // plane
 var plane = new THREE.PlaneGeometry(1000, 1000, 500, 500);
 var planeMaterial = new THREE.MeshLambertMaterial({
@@ -120,7 +108,7 @@ planeMesh.position.set(0, -1, 0);
 planeMesh.rotation.x = -Math.PI / 2;
 scene.add(planeMesh);
 
-// WALL
+// -- WALL --
 
 // Wall Ruang Dino - Kanan
 const cube = wall.createWall(0.5, 58, 50, 40, 1, -50, wall1_texture, scene);
@@ -129,7 +117,7 @@ const cube = wall.createWall(0.5, 58, 50, 40, 1, -50, wall1_texture, scene);
 const cube1 = wall.createWall(0.5, 58, 50, -40, 1, -50, wall1_texture, scene);
 
 // Wall Pembatas Pertama - Kanan
-const cube2 = wall.createWall(25, 58, 1, 27, 1, -70, wall1_texture, scene);
+const cube2 = wall.createWall(25, 58, 1, 27, 1, -75, wall1_texture, scene);
 
 // Wall Ruang Fossil - Kanan
 const cube3 = wall.createWall(0.5, 58, 150, 40, 1, -150, wall2_texture, scene);
@@ -138,7 +126,7 @@ const cube3 = wall.createWall(0.5, 58, 150, 40, 1, -150, wall2_texture, scene);
 const cube4 = wall.createWall(0.5, 58, 150, -40, 1, -150, wall2_texture, scene);
 
 // Wall Pembatas Pertama - Kiri
-const cube5 = wall.createWall(25, 58, 1, -27, 1, -70, wall1_texture, scene);
+const cube5 = wall.createWall(25, 58, 1, -27, 1, -75, wall1_texture, scene);
 
 // Wall Pembatas Kedua - Kiri
 const cube6 = wall.createWall(55, 58, 1, -27, 1, -140, wall3_texture, scene);
@@ -146,7 +134,7 @@ const cube6 = wall.createWall(55, 58, 1, -27, 1, -140, wall3_texture, scene);
 // Wall Pembatas Kedua - Kanan
 const cube7 = wall.createWall(55, 58, 1, 27, 1, -140, wall3_texture, scene);
 
-// DINO
+// -- DINO --
 
 // Dino Kanan - 1
 let clockTyrano = new THREE.Clock();
@@ -270,10 +258,6 @@ fossil.fossils(
   { x: 25, y: 1, z: -120 },
   30
 );
-// Fosil mammoth // ini di comment dlu bentar
-// var mammoth_gltf = 'model/fosils/mammoth/scene.gltf';
-// var mammoth_txt = 'model/fosils/mammoth/textures/material_0_baseColor.jpeg';
-// fossil.fossils(scene, mammoth_txt, mammoth_gltf, 0.5, { x: 0, y: -1, z: -85 }, 0);
 
 // Gate antara ruangan 1 dan 2
 let cieza;
@@ -282,7 +266,7 @@ let loaderr = new GLTFLoader.GLTFLoader().load(
   function (result) {
     cieza = result.scene.children[0];
     cieza.scale.set(1.5, 1.5, 1.5);
-    cieza.position.set(0, 2, -75);
+    cieza.position.set(0, 2, -80);
     cieza.rotation.x = 0.8;
     scene.add(cieza);
   }
