@@ -84,14 +84,22 @@ function proccesKeyboard(delta) {
 }
 
 // load texture untuk wallpaper
-const wall1_texture = new THREE.TextureLoader().load("./assets/texture/wall.jpg");
-const wall2_texture = new THREE.TextureLoader().load("./assets/texture/wall2.jpg");
-const wall3_texture = new THREE.TextureLoader().load("./assets/texture/wall3.avif");
-const plane_texture = new THREE.TextureLoader().load("./assets/texture/wood.jpg");
+const wall1_texture = new THREE.TextureLoader().load(
+  "./assets/texture/wall.jpg"
+);
+const wall2_texture = new THREE.TextureLoader().load(
+  "./assets/texture/wall2.jpg"
+);
+const wall3_texture = new THREE.TextureLoader().load(
+  "./assets/texture/wall3.avif"
+);
+const plane_texture = new THREE.TextureLoader().load(
+  "./assets/texture/wood.jpg"
+);
 
 plane_texture.wrapS = THREE.RepeatWrapping;
 plane_texture.wrapT = THREE.RepeatWrapping;
-plane_texture.repeat.set(50, 50)
+plane_texture.repeat.set(50, 50);
 
 // plane
 var plane = new THREE.PlaneGeometry(1000, 1000, 500, 500);
@@ -201,18 +209,21 @@ dino
   });
 
 // Dino Kanan - 3
-let clockVelo = new THREE.Clock()
-gltfPath = './model/dinosaurs/velociraptor/scene.gltf'
-let veloMixer
-dino.dinosaurus(scene, gltfPath, 3, 2.5, 4.5, { x: 20, y: 0, z: -60 }).then(mixer => {
-  veloMixer = mixer
-  console.log("Velociraptor loaded successfully!");
-}).catch(error => {
-  console.log(error)
-  console.error("Error loading velociraptor:", error);
-});
+let clockVelo = new THREE.Clock();
+gltfPath = "./model/dinosaurs/velociraptor/scene.gltf";
+let veloMixer;
+dino
+  .dinosaurus(scene, gltfPath, 3, 2.5, 4.5, { x: 20, y: 0, z: -60 })
+  .then((mixer) => {
+    veloMixer = mixer;
+    console.log("Velociraptor loaded successfully!");
+  })
+  .catch((error) => {
+    console.log(error);
+    console.error("Error loading velociraptor:", error);
+  });
 
-// -- Ruangan 2 -- 
+// -- Ruangan 2 --
 
 // Fosil plateosaurus - kanan pertama
 var plateosaurus_gltf = "./model/fosils/plateosaurus_skeleton/scene.gltf";
@@ -273,10 +284,12 @@ let loaderr = new GLTFLoader.GLTFLoader().load(
 );
 
 // ATAP
-const ceiling_texture = new THREE.TextureLoader().load("./assets/texture/ceiling.jpg");
+const ceiling_texture = new THREE.TextureLoader().load(
+  "./assets/texture/ceiling.jpg"
+);
 ceiling_texture.wrapS = THREE.RepeatWrapping;
 ceiling_texture.wrapT = THREE.RepeatWrapping;
-ceiling_texture.repeat.set(30, 30)
+ceiling_texture.repeat.set(30, 30);
 
 // Ceiling
 var ceilingGeometry = new THREE.PlaneGeometry(1000, 1000, 500, 500);
@@ -309,58 +322,144 @@ scene.add(pointLight1);
 let pendengar = new THREE.AudioListener();
 cam.add(pendengar);
 
-let dinoDesc = dino.dinoDescription()
+let dinoDesc = dino.dinoDescription();
+let fossilDesc = fossil.fossilDescription();
 
 const dinoo = document.getElementById("popup-container");
+const fossils = document.getElementById("popup-container");
 
-let positionCamera = controls.getObject().position
-
+let positionCamera = controls.getObject().position;
 
 // function draw
 const draw = () => {
   let delta = clock.getDelta();
 
-  console.log(controls.getObject().position)
-
-  if (positionCamera.x >= 0 &&
+  console.log(controls.getObject().position);
+  // kanan pertama
+  if (
+    positionCamera.x >= 0 &&
     positionCamera.x <= 13 &&
     positionCamera.z <= -26 &&
-    positionCamera.z >= -33) {
-    dino.informationPopUp(controls.getObject().position, dinoDesc[0], dinoDesc[1], dinoDesc[2])
-
-  }
-  else if (positionCamera.x >= 0 &&
+    positionCamera.z >= -33
+  ) {
+    dino.informationPopUp(
+      controls.getObject().position,
+      dinoDesc[0],
+      dinoDesc[1],
+      dinoDesc[2]
+    );
+    // kanan kedua
+  } else if (
+    positionCamera.x >= 0 &&
     positionCamera.x <= 13 &&
     positionCamera.z <= -41 &&
-    positionCamera.z >= -49) {
-    dino.informationPopUp(controls.getObject().position, dinoDesc[3], dinoDesc[4], dinoDesc[5])
-  }
-  else if (positionCamera.x >= 0 &&
+    positionCamera.z >= -49
+  ) {
+    dino.informationPopUp(
+      controls.getObject().position,
+      dinoDesc[3],
+      dinoDesc[4],
+      dinoDesc[5]
+    );
+    // kanan ketiga
+  } else if (
+    positionCamera.x >= 0 &&
     positionCamera.x <= 13 &&
     positionCamera.z <= -56 &&
-    positionCamera.z >= -63) {
-    dino.informationPopUp(controls.getObject().position, dinoDesc[6], dinoDesc[7], dinoDesc[8])
-  }
-  else if (positionCamera.x >= -15 &&
+    positionCamera.z >= -63
+  ) {
+    dino.informationPopUp(
+      controls.getObject().position,
+      dinoDesc[6],
+      dinoDesc[7],
+      dinoDesc[8]
+    );
+
+    // kiri pertama
+  } else if (
+    positionCamera.x >= -15 &&
     positionCamera.x <= -3 &&
     positionCamera.z <= -26 &&
-    positionCamera.z >= -33) {
-    dino.informationPopUp(controls.getObject().position, dinoDesc[9], dinoDesc[10], dinoDesc[11])
-  }
-  else if (positionCamera.x >= -15 &&
+    positionCamera.z >= -33
+  ) {
+    dino.informationPopUp(
+      controls.getObject().position,
+      dinoDesc[9],
+      dinoDesc[10],
+      dinoDesc[11]
+    );
+    //kiri kedua
+  } else if (
+    positionCamera.x >= -15 &&
     positionCamera.x <= -3 &&
     positionCamera.z <= -41 &&
-    positionCamera.z >= -49) {
-    dino.informationPopUp(controls.getObject().position, dinoDesc[12], dinoDesc[13], dinoDesc[14])
+    positionCamera.z >= -49
+  ) {
+    dino.informationPopUp(
+      controls.getObject().position,
+      dinoDesc[12],
+      dinoDesc[13],
+      dinoDesc[14]
+    );
+
+    // fossils
+    // kanan pertama
+  } else if (
+    positionCamera.x >= 10 &&
+    positionCamera.x <= 35 &&
+    positionCamera.z <= -90 &&
+    positionCamera.z >= -103
+  ) {
+    fossil.informationPopUp(
+      controls.getObject().position,
+      fossilDesc[0],
+      fossilDesc[1],
+      fossilDesc[2]
+    );
+    // kanan kedua
+  } else if (
+    positionCamera.x >= 10 &&
+    positionCamera.x <= 35 &&
+    positionCamera.z <= -110 &&
+    positionCamera.z >= -125
+  ) {
+    fossil.informationPopUp(
+      controls.getObject().position,
+      fossilDesc[3],
+      fossilDesc[4],
+      fossilDesc[5]
+    );
+    // kiri pertama
+  } else if (
+    positionCamera.x >= -35 &&
+    positionCamera.x <= -10 &&
+    positionCamera.z <= -90 &&
+    positionCamera.z >= -103
+  ) {
+    fossil.informationPopUp(
+      controls.getObject().position,
+      fossilDesc[6],
+      fossilDesc[7],
+      fossilDesc[8]
+    );
+
+    // kiri kedua
+  } else if (
+    positionCamera.x >= -35 &&
+    positionCamera.x <= -10 &&
+    positionCamera.z <= -110 &&
+    positionCamera.z >= -125
+  ) {
+    fossil.informationPopUp(
+      controls.getObject().position,
+      fossilDesc[9],
+      fossilDesc[10],
+      fossilDesc[11]
+    );
+  } else {
+    dinoo.style.display = "none";
+    fossils.style.display = "none";
   }
-  else {
-    dinoo.style.display = 'none'
-  }
-
-
-
-
-
 
   proccesKeyboard(delta);
 
