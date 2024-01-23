@@ -284,9 +284,58 @@ scene.add(new THREE.PointLightHelper(pointLight1, 0.2, 0x00ff00));
 let pendengar = new THREE.AudioListener();
 cam.add(pendengar);
 
+let dinoDesc = dino.dinoDescription()
+
+const dinoo = document.getElementById("popup-container");
+
+let positionCamera = controls.getObject().position
+
+
 // function draw
 const draw = () => {
   let delta = clock.getDelta();
+
+  console.log(controls.getObject().position)
+
+  if (positionCamera.x >= 0 &&
+    positionCamera.x <= 13 &&
+    positionCamera.z <= -26 &&
+    positionCamera.z >= -33) {
+    dino.informationPopUp(controls.getObject().position, dinoDesc[0], dinoDesc[1], dinoDesc[2])
+
+  }
+  else if (positionCamera.x >= 0 &&
+    positionCamera.x <= 13 &&
+    positionCamera.z <= -41 &&
+    positionCamera.z >= -49) {
+    dino.informationPopUp(controls.getObject().position, dinoDesc[3], dinoDesc[4], dinoDesc[5])
+  }
+  else if (positionCamera.x >= 0 &&
+    positionCamera.x <= 13 &&
+    positionCamera.z <= -56 &&
+    positionCamera.z >= -63) {
+    dino.informationPopUp(controls.getObject().position, dinoDesc[6], dinoDesc[7], dinoDesc[8])
+  }
+  else if (positionCamera.x >= -15 &&
+    positionCamera.x <= -3 &&
+    positionCamera.z <= -26 &&
+    positionCamera.z >= -33) {
+    dino.informationPopUp(controls.getObject().position, dinoDesc[9], dinoDesc[10], dinoDesc[11])
+  }
+  else if (positionCamera.x >= -15 &&
+    positionCamera.x <= -3 &&
+    positionCamera.z <= -41 &&
+    positionCamera.z >= -49) {
+    dino.informationPopUp(controls.getObject().position, dinoDesc[12], dinoDesc[13], dinoDesc[14])
+  }
+  else {
+    dinoo.style.display = 'none'
+  }
+
+
+
+
+
 
   proccesKeyboard(delta);
 
