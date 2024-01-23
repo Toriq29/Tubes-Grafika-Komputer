@@ -9,7 +9,7 @@ export function dinosaurus(scene, gltfPath, aniNUm, scl, r, pstn) {
     pointLight1.castShadow = true
 
     scene.add(pointLight1)
-    scene.add(new THREE.PointLightHelper(pointLight1, 0.2, 0x00ff00))
+    // scene.add(new THREE.PointLightHelper(pointLight1, 0.2, 0x00ff00))
 
     // Podium
     let podium;
@@ -33,7 +33,7 @@ export function dinosaurus(scene, gltfPath, aniNUm, scl, r, pstn) {
         let animation;
         let mixer;
         let action;
-
+ 
         const loader = new GLTFLoader.GLTFLoader()
 
         loader.load(gltfPath, function (result) {

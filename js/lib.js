@@ -46,6 +46,6 @@ export function lighting(scene) {
     pointLight.position.set(0, 10, -30)
     pointLight.castShadow = true
     scene.add(pointLight)
-    scene.add(new THREE.PointLightHelper(pointLight, 0.2, 0x00ff00))
+    // scene.add(new THREE.PointLightHelper(pointLight, 0.2, 0x00ff00))
 }
 

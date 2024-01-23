@@ -272,13 +272,38 @@ let loaderr = new GLTFLoader.GLTFLoader().load(
   }
 );
 
+// ATAP
+const ceiling_texture = new THREE.TextureLoader().load("./assets/texture/ceiling.jpg");
+ceiling_texture.wrapS = THREE.RepeatWrapping;
+ceiling_texture.wrapT = THREE.RepeatWrapping;
+ceiling_texture.repeat.set(30, 30)
+
+// Ceiling
+var ceilingGeometry = new THREE.PlaneGeometry(1000, 1000, 500, 500);
+var ceilingMaterial = new THREE.MeshLambertMaterial({
+  map: ceiling_texture, // Set the texture for the ceiling
+  roughness: 0.5,
+  metalness: 0, // Set metalness to 0
+  envMap: null, // Set envMap to null to disable reflections
+});
+
+var ceilingMesh = new THREE.Mesh(ceilingGeometry, ceilingMaterial);
+ceilingMesh.receiveShadow = true;
+ceilingMesh.position.set(0, 50, 0); // Set the y-coordinate to the desired height
+ceilingMesh.rotation.x = Math.PI / 2; // Rotate the ceiling to be horizontal
+scene.add(ceilingMesh);
+
 // lighting tengah
 const pointLight1 = new THREE.PointLight(0xffffff, 200, 50);
 pointLight1.position.set(0, 35, 0);
 pointLight1.castShadow = true;
 
+// Ambient Light (Warmer)
+var ambientLightWarm = new THREE.AmbientLight(0xffffff, 0.3); // Warmer color, Intensity: 0.5
+scene.add(ambientLightWarm);
+
 scene.add(pointLight1);
-scene.add(new THREE.PointLightHelper(pointLight1, 0.2, 0x00ff00));
+// scene.add(new THREE.PointLightHelper(pointLight1, 0.2, 0x00ff00));
 
 // audio
 let pendengar = new THREE.AudioListener();
