@@ -1,12 +1,25 @@
-body{
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
     margin: 0;
     overflow: hidden;
 }
 
 #button1 {
-    /* position: absolute; */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    background-color: rgba(0, 0, 0, 0.7);
     opacity: 0;
-    transition: opacity 0.75s;
+    transition: opacity 0.3s;
 }
 
 #button1.button1--visible {
