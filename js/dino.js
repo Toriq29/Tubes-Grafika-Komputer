@@ -1,7 +1,8 @@
 import * as THREE from "../node_modules/three/build/three.module.js";
 import * as GLTFLoader from "../node_modules/three/examples/jsm/loaders/GLTFLoader.js";
+import {pendengar, audioLoader} from "./index.js";
 
-export function dinosaurus(scene, gltfPath, aniNUm, scl, r, pstn) {
+export function dinosaurus(scene, gltfPath, aniNUm, scl, r, pstn, suaraDino) {
   // point light
   const pointLight1 = new THREE.PointLight(0xffffff, 200, 50);
   pointLight1.position.set(pstn.x, pstn.y + 15, pstn.z);
@@ -23,8 +24,6 @@ export function dinosaurus(scene, gltfPath, aniNUm, scl, r, pstn) {
       } else {
         podium.rotation.z = 4.75;
       }
-
-      // podium.material = new THREE.Mesh({ receivesShadow: true });
       scene.add(podium);
     }
   );
@@ -43,6 +42,8 @@ export function dinosaurus(scene, gltfPath, aniNUm, scl, r, pstn) {
         animation = result.animations;
         mixer = new THREE.AnimationMixer(result.scene);
         action = mixer.clipAction(animation[aniNUm]);
+
+        action.setLoop(THREE.LoopRepeat);
         action.play();
 
         dino = result.scene.children[0];
@@ -51,6 +52,18 @@ export function dinosaurus(scene, gltfPath, aniNUm, scl, r, pstn) {
         dino.rotation.z = r;
         dino.position.set(pstn.x, pstn.y, pstn.z);
         scene.add(dino);
+
+        const dinoAudio = new THREE.PositionalAudio(pendengar);
+
+        audioLoader.load(suaraDino, function (buffer) {
+          dinoAudio.setBuffer(buffer);
+          dinoAudio.setVolume(1.0);
+          dinoAudio.setRefDistance(0.5);
+          dinoAudio.setLoop(true);
+          dinoAudio.play();
+        });
+
+        dino.add(dinoAudio);
 
         resolve(mixer);
       },

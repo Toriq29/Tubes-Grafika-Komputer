@@ -104,13 +104,14 @@ wall.walls(scene)
 // Dino Kanan - 1
 let clockTyrano = new THREE.Clock();
 let gltfPath = "./model/dinosaurs/tyranosaurus/scene.gltf";
+let dinoSound = 'assets/audio/tyrano-sound.mp3';
 let tyranoMixer;
 dino
   .dinosaurus(scene, gltfPath, 2, 1.7, 4.9, {
     x: 20,
     y: 0,
     z: -30,
-  })
+  }, dinoSound)
   .then((mixer) => {
     tyranoMixer = mixer;
   })
@@ -121,13 +122,14 @@ dino
 // Dino Kiri - 1
 let clockPtera = new THREE.Clock();
 gltfPath = "./model/dinosaurs/pteradactal/scene.gltf";
+dinoSound = 'assets/audio/ptera-sound.mp3';
 let pteraMixer;
 dino
   .dinosaurus(scene, gltfPath, 0, 2.5, 1.5, {
     x: -20,
     y: 0,
     z: -30,
-  })
+  }, dinoSound)
   .then((mixer) => {
     pteraMixer = mixer;
   })
@@ -138,9 +140,10 @@ dino
 // Dino Kanan - 2
 let clockStego = new THREE.Clock();
 gltfPath = "./model/dinosaurs/stegosaurus/scene.gltf";
+dinoSound = 'assets/audio/stegosaurus-sounds.mp3';
 let stegoMixer;
 dino
-  .dinosaurus(scene, gltfPath, 3, 7, 3, { x: 20, y: 0, z: -45 })
+  .dinosaurus(scene, gltfPath, 3, 7, 3, { x: 20, y: 0, z: -45 }, dinoSound)
   .then((mixer) => {
     stegoMixer = mixer;
   })
@@ -151,13 +154,14 @@ dino
 // Dino Kiri - 2
 let clockTri = new THREE.Clock();
 gltfPath = "./model/dinosaurs/triceratops/scene.gltf";
+dinoSound = 'assets/audio/triceratops-sound.mp3';
 let triMixer;
 dino
   .dinosaurus(scene, gltfPath, 0, 2, 1.5, {
     x: -20,
     y: 0,
     z: -45,
-  })
+  }, dinoSound)
   .then((mixer) => {
     triMixer = mixer;
   })
@@ -168,13 +172,14 @@ dino
 // Dino Kanan - 3
 let clockVelo = new THREE.Clock();
 gltfPath = "./model/dinosaurs/velociraptor/scene.gltf";
+dinoSound = 'assets/audio/velociraptor-sounds.mp3';
 let veloMixer;
 dino
   .dinosaurus(scene, gltfPath, 3, 2.5, 4.5, { x: 20, y: 0, z: -60 })
   .then((mixer) => {
     veloMixer = mixer;
     console.log("Velociraptor loaded successfully!");
-  })
+  }, dinoSound)
   .catch((error) => {
     console.log(error);
     console.error("Error loading velociraptor:", error);
@@ -214,6 +219,8 @@ scene.add(pointLight1);
 // audio
 let pendengar = new THREE.AudioListener();
 cam.add(pendengar);
+let audioLoader = new THREE.AudioLoader();
+export {pendengar, audioLoader};
 
 let dinoDesc = dino.dinoDescription();
 let fossilDesc = fossil.fossilDescription();
