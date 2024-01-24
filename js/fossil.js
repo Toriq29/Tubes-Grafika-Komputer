@@ -88,7 +88,6 @@ export function fosils(scene) {
 }
 
 export function informationPopUp(
-  cameraPosition,
   name,
   description1,
   description2

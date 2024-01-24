@@ -61,7 +61,6 @@ export function dinosaurus(scene, gltfPath, aniNUm, scl, r, pstn) {
 }
 
 export function informationPopUp(
-  cameraPosition,
   name,
   description1,
   description2
