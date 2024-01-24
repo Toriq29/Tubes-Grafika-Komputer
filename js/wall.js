@@ -29,10 +29,10 @@ export function walls(scene) {
     
 
     // Wall Ruang Dino - Kanan
-    const cube = createWall(0.5, 58, 50, 40, 1, -50, wall1_texture, scene);
+    const cube = createWall(0.5, 58, 75, 40, 1, -50, wall1_texture, scene);
 
     // Wall Ruang Dino - Kiri
-    const cube1 = createWall(0.5, 58, 50, -40, 1, -50, wall1_texture, scene);
+    const cube1 = createWall(0.5, 58, 75, -40, 1, -50, wall1_texture, scene);
 
     // Wall Pembatas Pertama - Kanan
     const cube2 = createWall(25, 58, 1, 27, 1, -75, wall1_texture, scene);
@@ -53,6 +53,7 @@ export function walls(scene) {
     const cube7 = createWall(55, 58, 1, 27, 1, -140, wall3_texture, scene);
 }
 
+// gate pembatas ruang 1 dan 2
 export function cieza(scene) {
     let cieza;
     let loaderr = new GLTFLoader.GLTFLoader().load(

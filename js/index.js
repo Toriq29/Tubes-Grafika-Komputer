@@ -208,7 +208,6 @@ ceiling_texture.wrapS = THREE.RepeatWrapping;
 ceiling_texture.wrapT = THREE.RepeatWrapping;
 ceiling_texture.repeat.set(30, 30);
 
-// Ceiling
 var ceilingGeometry = new THREE.PlaneGeometry(1000, 1000, 500, 500);
 var ceilingMaterial = new THREE.MeshLambertMaterial({
   map: ceiling_texture, // Set the texture for the ceiling

@@ -1,81 +1,112 @@
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 body {
-    margin: 0;
-    overflow: hidden;
+  margin: 0;
+  overflow: hidden;
 }
 
 #button1 {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    margin: 0;
-    padding: 0;
-    background-color: rgba(0, 0, 0, 0.7);
-    opacity: 0;
-    transition: opacity 0.3s;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  opacity: 0;
+  transition: opacity 0.3s;
 }
 
 #button1.button1--visible {
-    opacity: 1;
+  opacity: 1;
 }
 
 .loader {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: #333333;   
-    transition: opacity 0.75s, visibility 0.75s;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #333333;
+  transition: opacity 0.75s, visibility 0.75s;
 }
 
 .loader--hidden {
-    opacity: 0;
-    visibility: hidden;
+  opacity: 0;
+  visibility: hidden;
 }
 
 .loader::after {
-    content: "";
-    width: 75px;
-    height: 75px;
-    border: 15px solid #dddddd;
-    border-top-color: #009578;
-    border-radius: 50%;
-    animation: loading 0.75s ease infinite;
+  content: "";
+  width: 75px;
+  height: 75px;
+  border: 15px solid #dddddd;
+  border-top-color: #009578;
+  border-radius: 50%;
+  animation: loading 0.75s ease infinite;
 }
 
 @keyframes loading {
-    from {transform: rotate(0turn);}
-    to {transform: rotate(1turn);}
+  from {
+    transform: rotate(0turn);
+  }
+  to {
+    transform: rotate(1turn);
+  }
 }
 
 .popup-container {
-    display: none;
-    position: fixed;
-    top: 70%;
-    left: 65%;
-    right: 4%;
-    /* Mengatur posisi container di sebelah kanan dengan jarak 10% dari tepi kanan */
-    transform: translate(0, -50%);
-    padding: 10px;
-    /* Mengurangi padding agar container tidak terlalu besar */
-    background-color: #fff;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-    z-index: 1000;
-    border-radius: 25px;
+  display: none;
+  position: fixed;
+  top: 70%;
+  left: 65%;
+  right: 4%;
+  transform: translate(0, -50%);
+  padding: 15px;
+  background: linear-gradient(45deg, #e7e3d4, #ff9966);
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.7);
+  z-index: 1000;
+  border-radius: 25px;
+  /* transition: transform 0.5s ease-in-out; */
+  animation: slideIn 0.3s ease-in;
 }
 
 .popup-content {
-    text-align: left;
-    font-size: x-small;
+  text-align: justify;
+  font-size: small;
+  color: #333;
 }
+
+#name {
+  font-size: 3em;
+  color: #1c5693;
+  text-align: center;
+  /* font-family: unset; */
+}
+
+#desc1,
+#desc2 {
+  margin-top: 8px;
+  font-size: x-small;
+  color: #555;
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(60%);
+  }
+}
+/* .popup-container:hover {
+    transform: translateX(0);
+} */
