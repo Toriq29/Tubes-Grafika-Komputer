@@ -84,15 +84,6 @@ function proccesKeyboard(delta) {
 }
 
 // load texture untuk wallpaper
-const wall1_texture = new THREE.TextureLoader().load(
-  "./assets/texture/wall.jpg"
-);
-const wall2_texture = new THREE.TextureLoader().load(
-  "./assets/texture/wall2.jpg"
-);
-const wall3_texture = new THREE.TextureLoader().load(
-  "./assets/texture/wall3.avif"
-);
 const plane_texture = new THREE.TextureLoader().load(
   "./assets/texture/wood.jpg"
 );
@@ -118,29 +109,7 @@ scene.add(planeMesh);
 
 // -- WALL --
 
-// Wall Ruang Dino - Kanan
-const cube = wall.createWall(0.5, 58, 50, 40, 1, -50, wall1_texture, scene);
-
-// Wall Ruang Dino - Kiri
-const cube1 = wall.createWall(0.5, 58, 50, -40, 1, -50, wall1_texture, scene);
-
-// Wall Pembatas Pertama - Kanan
-const cube2 = wall.createWall(25, 58, 1, 27, 1, -75, wall1_texture, scene);
-
-// Wall Ruang Fossil - Kanan
-const cube3 = wall.createWall(0.5, 58, 150, 40, 1, -150, wall2_texture, scene);
-
-// Wall Ruang Fossil - Kiri
-const cube4 = wall.createWall(0.5, 58, 150, -40, 1, -150, wall2_texture, scene);
-
-// Wall Pembatas Pertama - Kiri
-const cube5 = wall.createWall(25, 58, 1, -27, 1, -75, wall1_texture, scene);
-
-// Wall Pembatas Kedua - Kiri
-const cube6 = wall.createWall(55, 58, 1, -27, 1, -140, wall3_texture, scene);
-
-// Wall Pembatas Kedua - Kanan
-const cube7 = wall.createWall(55, 58, 1, 27, 1, -140, wall3_texture, scene);
+wall.walls(scene)
 
 // -- DINO --
 
@@ -225,63 +194,11 @@ dino
 
 // -- Ruangan 2 --
 
-// Fosil plateosaurus - kanan pertama
-var plateosaurus_gltf = "./model/fosils/plateosaurus_skeleton/scene.gltf";
-var plateosaurus_txt =
-  "./model/fosils/plateosaurus_skeleton/textures/material_0_diffuse.png";
-fossil.fossils(
-  scene,
-  plateosaurus_txt,
-  plateosaurus_gltf,
-  2,
-  { x: 25, y: 5, z: -100 },
-  30
-);
-
-// Fosil Dodo - kiri pertama
-var dodo_gltf = "./model/fosils/dodo_skeleton/scene.gltf";
-var dodo_txt =
-  "./model/fosils/plateosaurus_skeleton/textures/material_0_diffuse.png";
-fossil.fossils(scene, dodo_txt, dodo_gltf, 2, { x: -25, y: 5, z: -100 }, -30);
-
-// Fosil Triceratops - kiri kedua
-var triceratops_gltf = "./model/fosils/triceratops_skeleton/scene.gltf";
-var triceratops_txt =
-  "./model/fosils/triceratops_skeleton/textures/default_baseColor.png";
-fossil.fossils(
-  scene,
-  triceratops_txt,
-  triceratops_gltf,
-  4,
-  { x: -25, y: 2.5, z: -120 },
-  -30
-);
-
-// Fosil Tyrannosaurus - kanan kedua
-var tyrannosaurus_gltf = "./model/fosils/tyrannosaurus_rex_skeleton/scene.gltf";
-var tyrannosaurus_txt =
-  "./model/fosils/tyrannosaurus_rex_skeleton/textures/dyno_tex_Material_u1_v1_baseColor.jpeg";
-fossil.fossils(
-  scene,
-  tyrannosaurus_txt,
-  tyrannosaurus_gltf,
-  4,
-  { x: 25, y: 1, z: -120 },
-  30
-);
+fossil.fosils(scene)
 
 // Gate antara ruangan 1 dan 2
-let cieza;
-let loaderr = new GLTFLoader.GLTFLoader().load(
-  "./model/museum_wall/cieza/scene.gltf",
-  function (result) {
-    cieza = result.scene.children[0];
-    cieza.scale.set(1.5, 1.5, 1.5);
-    cieza.position.set(0, 2, -80);
-    cieza.rotation.x = 0.8;
-    scene.add(cieza);
-  }
-);
+
+wall.cieza(scene)
 
 // ATAP
 const ceiling_texture = new THREE.TextureLoader().load(

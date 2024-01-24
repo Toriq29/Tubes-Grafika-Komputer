@@ -1,7 +1,7 @@
 import * as THREE from "../node_modules/three/build/three.module.js";
 import * as GLTFLoader from "../node_modules/three/examples/jsm/loaders/GLTFLoader.js";
 
-export function fossils(scene, fosiltxt, fosilGltf, scl, pstn, rtt) {
+function fossils(scene, fosiltxt, fosilGltf, scl, pstn, rtt) {
   var loader = new GLTFLoader.GLTFLoader();
   var texture = new THREE.TextureLoader().load(fosiltxt);
 
@@ -38,6 +38,53 @@ export function fossils(scene, fosiltxt, fosilGltf, scl, pstn, rtt) {
     podium.scene.scale.set(0.5, 0.5, 0.5);
     scene.add(podium.scene);
   });
+}
+
+export function fosils(scene) {
+  // Fosil plateosaurus - kanan pertama
+  var plateosaurus_gltf = "./model/fosils/plateosaurus_skeleton/scene.gltf";
+  var plateosaurus_txt =
+    "./model/fosils/plateosaurus_skeleton/textures/material_0_diffuse.png";
+  fossils(
+    scene,
+    plateosaurus_txt,
+    plateosaurus_gltf,
+    2,
+    { x: 25, y: 5, z: -100 },
+    30
+  );
+
+  // Fosil Dodo - kiri pertama
+  var dodo_gltf = "./model/fosils/dodo_skeleton/scene.gltf";
+  var dodo_txt =
+    "./model/fosils/plateosaurus_skeleton/textures/material_0_diffuse.png";
+  fossils(scene, dodo_txt, dodo_gltf, 2, { x: -25, y: 5, z: -100 }, -30);
+
+  // Fosil Triceratops - kiri kedua
+  var triceratops_gltf = "./model/fosils/triceratops_skeleton/scene.gltf";
+  var triceratops_txt =
+    "./model/fosils/triceratops_skeleton/textures/default_baseColor.png";
+  fossils(
+    scene,
+    triceratops_txt,
+    triceratops_gltf,
+    4,
+    { x: -25, y: 2.5, z: -120 },
+    -30
+  );
+
+  // Fosil Tyrannosaurus - kanan kedua
+  var tyrannosaurus_gltf = "./model/fosils/tyrannosaurus_rex_skeleton/scene.gltf";
+  var tyrannosaurus_txt =
+    "./model/fosils/tyrannosaurus_rex_skeleton/textures/dyno_tex_Material_u1_v1_baseColor.jpeg";
+  fossils(
+    scene,
+    tyrannosaurus_txt,
+    tyrannosaurus_gltf,
+    4,
+    { x: 25, y: 1, z: -120 },
+    30
+  );
 }
 
 export function informationPopUp(
@@ -101,3 +148,5 @@ export function fossilDescription() {
 
   return fossilDesc;
 }
+
+
