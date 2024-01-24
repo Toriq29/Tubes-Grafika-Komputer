@@ -32,20 +32,22 @@ export function popUps(dinoDesc, fossilDesc, positionCamera) {
             dinoDesc[5]
         );
         // kanan ketiga
-    } else if (
-        positionCamera.x >= 0 &&
-        positionCamera.x <= 13 &&
-        positionCamera.z <= -56 &&
-        positionCamera.z >= -63
-    ) {
-        dino.informationPopUp(
-            dinoDesc[6],
-            dinoDesc[7],
-            dinoDesc[8]
-        );
+    }
+    //  else if (
+    //     positionCamera.x >= 0 &&
+    //     positionCamera.x <= 13 &&
+    //     positionCamera.z <= -56 &&
+    //     positionCamera.z >= -63
+    // ) {
+    //     dino.informationPopUp(
+    //         dinoDesc[6],
+    //         dinoDesc[7],
+    //         dinoDesc[8]
+    //     );
 
-        // kiri pertama
-    } else if (
+    // // kiri pertama
+    // } 
+    else if (
         positionCamera.x >= -15 &&
         positionCamera.x <= -3 &&
         positionCamera.z <= -26 &&
