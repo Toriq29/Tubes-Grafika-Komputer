@@ -3,6 +3,8 @@ import * as GLTFLoader from "../node_modules/three/examples/jsm/loaders/GLTFLoad
 import * as pointerLock from "../node_modules/three/examples/jsm/controls/PointerLockControls.js";
 import * as lib from "./lib.js";
 import * as wall from "./wall.js";
+import * as plane from "./plane.js";
+import * as ceiling from "./ceiling.js";
 import * as dino from "./dino.js";
 import * as fossil from "./fossil.js";
 
@@ -12,7 +14,7 @@ let cam = new THREE.PerspectiveCamera(
   1,
   1000
 );
-cam.position.z = 7;
+cam.position.z = -15;
 cam.position.y = 3;
 
 const scene = new THREE.Scene();
@@ -83,32 +85,18 @@ function proccesKeyboard(delta) {
   }
 }
 
-// load texture untuk wallpaper
+// PLANE
 const plane_texture = new THREE.TextureLoader().load(
   "./assets/texture/wood.jpg"
 );
-
 plane_texture.wrapS = THREE.RepeatWrapping;
 plane_texture.wrapT = THREE.RepeatWrapping;
 plane_texture.repeat.set(50, 50);
 
-// plane
-var plane = new THREE.PlaneGeometry(1000, 1000, 500, 500);
-var planeMaterial = new THREE.MeshLambertMaterial({
-  color: 0xfffff0,
-  roughness: 0.5,
-  metalness: 1,
-  map: plane_texture,
-});
-
-var planeMesh = new THREE.Mesh(plane, planeMaterial);
-planeMesh.receiveShadow = true;
-planeMesh.position.set(0, -1, 0);
-planeMesh.rotation.x = -Math.PI / 2;
+var planeMesh = plane.createPlane(1000, 1000, 500, 500, 0xfffff0, 0.5, 1, plane_texture);
 scene.add(planeMesh);
 
 // -- WALL --
-
 wall.walls(scene)
 
 // -- DINO --
@@ -208,18 +196,7 @@ ceiling_texture.wrapS = THREE.RepeatWrapping;
 ceiling_texture.wrapT = THREE.RepeatWrapping;
 ceiling_texture.repeat.set(30, 30);
 
-var ceilingGeometry = new THREE.PlaneGeometry(1000, 1000, 500, 500);
-var ceilingMaterial = new THREE.MeshLambertMaterial({
-  map: ceiling_texture, // Set the texture for the ceiling
-  roughness: 0.5,
-  metalness: 0, // Set metalness to 0
-  envMap: null, // Set envMap to null to disable reflections
-});
-
-var ceilingMesh = new THREE.Mesh(ceilingGeometry, ceilingMaterial);
-ceilingMesh.receiveShadow = true;
-ceilingMesh.position.set(0, 50, 0); // Set the y-coordinate to the desired height
-ceilingMesh.rotation.x = Math.PI / 2; // Rotate the ceiling to be horizontal
+var ceilingMesh = ceiling.createCeiling(1000, 1000, 500, 500, ceiling_texture, 0.5, 0);
 scene.add(ceilingMesh);
 
 // lighting tengah
