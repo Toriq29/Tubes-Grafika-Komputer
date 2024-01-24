@@ -27,30 +27,25 @@ export function walls(scene) {
         "./assets/texture/wall3.avif"
     );
     
+    // Wall Ruang Dino
+    const cube = createWall(0.5, 58, 80, 40, 1, -35, wall1_texture, scene); // Kanan
+    const cube1 = createWall(0.5, 58, 80, -40, 1, -35, wall1_texture, scene); // Kiri
 
-    // Wall Ruang Dino - Kanan
-    const cube = createWall(0.5, 58, 75, 40, 1, -50, wall1_texture, scene);
+    // Wall Pembatas Pertama
+    const cube2 = createWall(25, 58, 1, 27, 1, -75, wall1_texture, scene); // Kanan
+    const cube5 = createWall(25, 58, 1, -27, 1, -75, wall1_texture, scene); // Kiri
 
-    // Wall Ruang Dino - Kiri
-    const cube1 = createWall(0.5, 58, 75, -40, 1, -50, wall1_texture, scene);
+    // Wall Ruang Fossil
+    const cube3 = createWall(0.5, 58, 150, 40, 1, -150, wall2_texture, scene); // Kanan
+    const cube4 = createWall(0.5, 58, 150, -40, 1, -150, wall2_texture, scene); // Kiri
 
-    // Wall Pembatas Pertama - Kanan
-    const cube2 = createWall(25, 58, 1, 27, 1, -75, wall1_texture, scene);
-
-    // Wall Ruang Fossil - Kanan
-    const cube3 = createWall(0.5, 58, 150, 40, 1, -150, wall2_texture, scene);
-
-    // Wall Ruang Fossil - Kiri
-    const cube4 = createWall(0.5, 58, 150, -40, 1, -150, wall2_texture, scene);
-
-    // Wall Pembatas Pertama - Kiri
-    const cube5 = createWall(25, 58, 1, -27, 1, -75, wall1_texture, scene);
-
-    // Wall Pembatas Kedua - Kiri
-    const cube6 = createWall(55, 58, 1, -27, 1, -140, wall3_texture, scene);
-
-    // Wall Pembatas Kedua - Kanan
-    const cube7 = createWall(55, 58, 1, 27, 1, -140, wall3_texture, scene);
+    // Wall Pembatas Kedua
+    const cube6 = createWall(55, 58, 1, -27.5, 1, -140, wall3_texture, scene); // Kiri
+    const cube7 = createWall(55, 58, 1, 27.5, 1, -140, wall3_texture, scene); // Kanan
+    
+    // Wall Pertama
+    const cube9 = createWall(55, 58, 1, 27.5, 1, -10, wall3_texture, scene); // Kanan
+    const cube8 = createWall(55, 58, 1, -27.5, 1, -10, wall3_texture, scene); // Kiri
 }
 
 // gate pembatas ruang 1 dan 2
