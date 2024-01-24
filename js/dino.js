@@ -10,7 +10,7 @@ export function dinosaurus(scene, gltfPath, aniNUm, scl, r, pstn) {
   scene.add(pointLight1);
   // scene.add(new THREE.PointLightHelper(pointLight1, 0.2, 0x00ff00))
 
-  // Podium
+  // Podium untuk dino
   let podium;
   let loaderr = new GLTFLoader.GLTFLoader().load(
     "model/podium_large/scene.gltf",
@@ -60,6 +60,7 @@ export function dinosaurus(scene, gltfPath, aniNUm, scl, r, pstn) {
   });
 }
 
+// container deskripsi
 export function informationPopUp(
   name,
   description1,
@@ -77,6 +78,7 @@ export function informationPopUp(
 
 }
 
+// deskripsi dinosaurus
 export function dinoDescription() {
   let dinoDesc = [];
   // dino kanan - pertama
@@ -109,7 +111,7 @@ export function dinoDescription() {
   dinoDesc.push(descVelo1);
   dinoDesc.push(descVelo2);
 
-  
+  // dino kiri - pertama
   let namePtero = "Pterosaurs";
   let descPtero1 =
     'Pterosaurs (/ˈtɛrəsɔːr, ˈtɛroʊ-/; from Greek pteron and sauros, meaning "wing lizard") are an extinct clade of flying reptiles in the order Pterosauria. They existed during most of the Mesozoic: from the Late Triassic to the end of the Cretaceous (228 to 66 million years ago). Pterosaurs are the earliest vertebrates known to have evolved powered flight. Their wings were formed by a membrane of skin, muscle, and other tissues stretching from the ankles to a dramatically lengthened fourth finger.';
@@ -119,6 +121,7 @@ export function dinoDescription() {
   dinoDesc.push(descPtero1);
   dinoDesc.push(descPtero2);
 
+  // dino kiri - kedua
   let nameTricera = "Triceratops";
   let descTricera1 =
     'Triceratops (/traɪˈsɛrətɒps/ try-SERR-ə-tops;) is a genus of chasmosaurine ceratopsian dinosaur that lived during the late Maastrichtian age of the Late Cretaceous period, about 68 to 66 million years ago in what is now western North America. It was one of the last-known non-avian dinosaurs and lived until the Cretaceous–Paleogene extinction event 66 million years ago. The name Triceratops, which literally means three-horned face, is derived from the Greek words trí- (τρί-) meaning three, kéras (κέρας) meaning horn, and ṓps (ὤψ) meaning face.';

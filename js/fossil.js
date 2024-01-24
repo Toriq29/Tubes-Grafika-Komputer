@@ -5,11 +5,11 @@ function fossils(scene, fosiltxt, fosilGltf, scl, pstn, rtt) {
   var loader = new GLTFLoader.GLTFLoader();
   var texture = new THREE.TextureLoader().load(fosiltxt);
 
-  var pointLight = new THREE.PointLight(0xffffff, 400, 50);
-  pointLight.position.set(pstn.x, pstn.y + 20, pstn.z);
+  var pointLight = new THREE.PointLight(0xffffff, 200, 50);
+  pointLight.position.set(pstn.x, pstn.y + 15, pstn.z);
   pointLight.castShadow = true;
   scene.add(pointLight);
-  scene.add(new THREE.PointLightHelper(pointLight, 0.2, 0x00ff00));
+  // scene.add(new THREE.PointLightHelper(pointLight, 0.2, 0x00ff00));
 
   loader.load(fosilGltf, function (fosil) {
     fosil.scene.traverse(function (child) {
@@ -23,6 +23,7 @@ function fossils(scene, fosiltxt, fosilGltf, scl, pstn, rtt) {
     scene.add(fosil.scene);
   });
 
+  // Podium untuk fossil
   var podium_gltf = "model/aztec_podium/scene.gltf";
   var podium_txt = new THREE.TextureLoader().load(
     "model/aztec_podium/textures/None_baseColor.png"
@@ -87,6 +88,7 @@ export function fosils(scene) {
   );
 }
 
+// container deskripsi
 export function informationPopUp(
   name,
   description1,
@@ -102,11 +104,12 @@ export function informationPopUp(
   desc1.innerHTML = description1;
   desc2.innerHTML = description2;
 }
+// deskripsi fossil
 export function fossilDescription() {
   let fossilDesc = [];
 
   // plateosaurus - kanan pertama
-  let namePlateo = "Plateosaurus";
+  let namePlateo = "Plateosaurus Fossil";
   let descPlateo1 =
     "Plateosaurus was a herbivorous dinosaur that lived during the Late Triassic period, approximately 214 to 204 million years ago. It was a large, quadrupedal dinosaur characterized by distinctive features.";
   let descPlateo2 =
@@ -116,7 +119,7 @@ export function fossilDescription() {
   fossilDesc.push(descPlateo2);
 
   // Tyrannosaurus - kanan kedua
-  let nameTyranno = "Tyrannosaurus";
+  let nameTyranno = "Tyrannosaurus Fossil";
   let descTyranno1 =
     "Tyrannosaurus (/tɪˌrænəˈsɔːrəs, taɪ-/;) from Ancient Greek τύραννος (túrannos) 'tyrant', and σαῦρος (saûros) 'lizard') is a genus of large theropod dinosaur. The type species Tyrannosaurus rex (rex meaning 'king' in Latin), often called T. rex or colloquially T-Rex, is one of the best represented theropods. It lived throughout what is now western North America, on what was then an island continent known as Laramidia.";
   let descTyranno2 =
@@ -136,7 +139,7 @@ export function fossilDescription() {
   fossilDesc.push(descDodo2);
 
   // Triceratops - kiri kedua
-  let nameTricera = "Triceratops";
+  let nameTricera = "Triceratops Fossil";
   let descTricera1 =
     "Triceratops (/traɪˈsɛrətɒps/ try-SERR-ə-tops;) is a genus of chasmosaurine ceratopsian dinosaur that lived during the late Maastrichtian age of the Late Cretaceous period, about 68 to 66 million years ago in what is now western North America. The name Triceratops, which literally means three-horned face, is derived from the Greek words trí- (τρί-) meaning three, kéras (κέρας) meaning horn, and ṓps (ὤψ) meaning face.";
   let descTricera2 =

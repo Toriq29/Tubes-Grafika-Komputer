@@ -2,45 +2,6 @@ import * as THREE from '../node_modules/three/build/three.module.js'
 import * as dino from "./dino.js";
 import * as fossil from "./fossil.js";
 
-// export function PerspectiveCamera() {
-//     const cam = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 1, 1000);
-//     cam.position.z = 7;
-//     cam.position.y = 1;
-
-//     return cam
-// }
-
-// export function threeJs(cam) {
-//     const scene = new THREE.Scene();
-//     const renderer = new THREE.WebGLRenderer({ antialias: true });
-//     renderer.setSize(window.innerWidth, window.innerHeight);
-//     renderer.shadowMap.enabled = true;
-//     renderer.shadowMap.type = THREE.BasicShadowMap;
-//     document.body.appendChild(renderer.domElement);
-//     document.body.appendChild(renderer.domElement);
-//     const controls = new pointerLock.PointerLockControls(cam, renderer.domElement)
-
-//     return { scene, renderer, controls }
-// }
-
-// export function proccesKeyboard(keyboard, controls) {
-//     let speed = 0.1
-
-//     if (keyboard['w']) {
-//         controls.moveForward(speed)
-//     }
-//     if (keyboard['s']) {
-//         controls.moveForward(-speed)
-//     }
-
-//     if (keyboard['a']) {
-//         controls.moveRight(-speed)
-//     }
-//     if (keyboard['d']) {
-//         controls.moveRight(speed)
-//     }
-// }
-
 
 export function popUps(dinoDesc, fossilDesc, positionCamera) {
 
