@@ -170,20 +170,20 @@ dino
   });
 
 // Dino Kanan - 3
-let clockVelo = new THREE.Clock();
-gltfPath = "./model/dinosaurs/velociraptor/scene.gltf";
-dinoSound = 'assets/audio/velociraptor-sounds.mp3';
-let veloMixer;
-dino
-  .dinosaurus(scene, gltfPath, 3, 2.5, 4.5, { x: 20, y: 0, z: -60 })
-  .then((mixer) => {
-    veloMixer = mixer;
-    console.log("Velociraptor loaded successfully!");
-  }, dinoSound)
-  .catch((error) => {
-    console.log(error);
-    console.error("Error loading velociraptor:", error);
-  });
+// let clockVelo = new THREE.Clock();
+// gltfPath = "./model/dinosaurs/velociraptor/scene.gltf";
+// dinoSound = 'assets/audio/velociraptor-sounds.mp3';
+// let veloMixer;
+// dino
+//   .dinosaurus(scene, gltfPath, 3, 2.5, 4.5, { x: 20, y: 0, z: -60 })
+//   .then((mixer) => {
+//     veloMixer = mixer;
+//     console.log("Velociraptor loaded successfully!");
+//   }, dinoSound)
+//   .catch((error) => {
+//     console.log(error);
+//     console.error("Error loading velociraptor:", error);
+//   });
 
 // -- Ruangan 2 --
 
@@ -210,7 +210,7 @@ pointLight1.position.set(0, 35, 0);
 pointLight1.castShadow = true;
 
 // Ambient Light (Warmer)
-var ambientLightWarm = new THREE.AmbientLight(0xffffff, 0.3); // Warmer color, Intensity: 0.5
+var ambientLightWarm = new THREE.AmbientLight(0xffffff, 0.3);
 scene.add(ambientLightWarm);
 
 scene.add(pointLight1);
@@ -218,9 +218,9 @@ scene.add(pointLight1);
 
 // audio
 let pendengar = new THREE.AudioListener();
-cam.add(pendengar);
 let audioLoader = new THREE.AudioLoader();
-export {pendengar, audioLoader};
+cam.add(pendengar);
+export {cam, pendengar, audioLoader};
 
 let dinoDesc = dino.dinoDescription();
 let fossilDesc = fossil.fossilDescription();
@@ -232,7 +232,7 @@ const draw = () => {
   let delta = clock.getDelta();
   proccesKeyboard(delta);
 
-  console.log(controls.getObject().position);
+  // console.log(controls.getObject().position);
   // kanan pertama
   
   lib.popUps(dinoDesc, fossilDesc, positionCamera)
@@ -246,9 +246,9 @@ const draw = () => {
     pteraMixer.update(clockPtera.getDelta());
   }
 
-  if (veloMixer) {
-    veloMixer.update(clockVelo.getDelta());
-  }
+  // if (veloMixer) {
+  //   veloMixer.update(clockVelo.getDelta());
+  // }
 
   if (stegoMixer) {
     stegoMixer.update(clockStego.getDelta());
