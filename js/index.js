@@ -15,7 +15,7 @@ let cam = new THREE.PerspectiveCamera(
   1000
 );
 cam.position.z = -15;
-cam.position.y = 3;
+cam.position.y = 2;
 
 const scene = new THREE.Scene();
 const renderer = new THREE.WebGLRenderer({ antialias: true });
@@ -65,36 +65,9 @@ addEventListener("keyup", (e) => {
   keyboard[e.key] = false;
 });
 
-// settingan keyboard untuk navigasi
-function proccesKeyboard(delta) {
-  let speed = 10;
-  let actualSpeed = speed * delta;
-
-  if (keyboard["w"]) {
-    controls.moveForward(actualSpeed);
-  }
-  if (keyboard["s"]) {
-    controls.moveForward(-actualSpeed);
-  }
-
-  if (keyboard["a"]) {
-    controls.moveRight(-actualSpeed);
-  }
-  if (keyboard["d"]) {
-    controls.moveRight(actualSpeed);
-  }
-}
 
 // PLANE
-const plane_texture = new THREE.TextureLoader().load(
-  "./assets/texture/wood.jpg"
-);
-plane_texture.wrapS = THREE.RepeatWrapping;
-plane_texture.wrapT = THREE.RepeatWrapping;
-plane_texture.repeat.set(50, 50);
-
-var planeMesh = plane.createPlane(1000, 1000, 500, 500, 0xfffff0, 0.5, 1, plane_texture);
-scene.add(planeMesh);
+plane.plane(scene)
 
 // -- WALL --
 wall.walls(scene)
@@ -110,7 +83,7 @@ dino
   .dinosaurus(scene, gltfPath, 2, 1.7, 4.9, {
     x: 20,
     y: 0,
-    z: -30,
+    z: -45,
   }, dinoSound)
   .then((mixer) => {
     tyranoMixer = mixer;
@@ -128,7 +101,7 @@ dino
   .dinosaurus(scene, gltfPath, 0, 2.5, 1.5, {
     x: -20,
     y: 0,
-    z: -30,
+    z: -45,
   }, dinoSound)
   .then((mixer) => {
     pteraMixer = mixer;
@@ -143,7 +116,7 @@ gltfPath = "./model/dinosaurs/stegosaurus/scene.gltf";
 dinoSound = 'assets/audio/stegosaurus-sounds.mp3';
 let stegoMixer;
 dino
-  .dinosaurus(scene, gltfPath, 3, 7, 3, { x: 20, y: 0, z: -45 }, dinoSound)
+  .dinosaurus(scene, gltfPath, 3, 7, 3, { x: 20, y: 0, z: -60 }, dinoSound)
   .then((mixer) => {
     stegoMixer = mixer;
   })
@@ -160,7 +133,7 @@ dino
   .dinosaurus(scene, gltfPath, 0, 2, 1.5, {
     x: -20,
     y: 0,
-    z: -45,
+    z: -60,
   }, dinoSound)
   .then((mixer) => {
     triMixer = mixer;
@@ -186,34 +159,18 @@ dino
 //   });
 
 // -- Ruangan 2 --
-
 fossil.fosils(scene)
 
 // Gate antara ruangan 1 dan 2
-
 wall.cieza(scene)
 
 // ATAP
-const ceiling_texture = new THREE.TextureLoader().load(
-  "./assets/texture/ceiling.jpg"
-);
-ceiling_texture.wrapS = THREE.RepeatWrapping;
-ceiling_texture.wrapT = THREE.RepeatWrapping;
-ceiling_texture.repeat.set(30, 30);
+ceiling.ceiling(scene)
 
-var ceilingMesh = ceiling.createCeiling(1000, 1000, 500, 500, ceiling_texture, 0.5, 0);
-scene.add(ceilingMesh);
+// Lightings
+lib.lightings(scene)
 
-// lighting tengah
-const pointLight1 = new THREE.PointLight(0xffffff, 200, 50);
-pointLight1.position.set(0, 35, 0);
-pointLight1.castShadow = true;
 
-// Ambient Light (Warmer)
-var ambientLightWarm = new THREE.AmbientLight(0xffffff, 0.3);
-scene.add(ambientLightWarm);
-
-scene.add(pointLight1);
 // scene.add(new THREE.PointLightHelper(pointLight1, 0.2, 0x00ff00));
 
 // audio
@@ -222,19 +179,20 @@ let audioLoader = new THREE.AudioLoader();
 cam.add(pendengar);
 export {cam, pendengar, audioLoader};
 
+
+// Deskripsi Dino dan Fossil
 let dinoDesc = dino.dinoDescription();
 let fossilDesc = fossil.fossilDescription();
 
+// Position camera
 let positionCamera = controls.getObject().position;
 
 // function draw
 const draw = () => {
   let delta = clock.getDelta();
-  proccesKeyboard(delta);
+  lib.proccesKeyboard(delta, keyboard, controls);
 
-  // console.log(controls.getObject().position);
-  // kanan pertama
-  
+
   lib.popUps(dinoDesc, fossilDesc, positionCamera)
 
 

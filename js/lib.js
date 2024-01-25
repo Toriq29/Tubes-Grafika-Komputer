@@ -2,6 +2,36 @@ import * as THREE from '../node_modules/three/build/three.module.js'
 import * as dino from "./dino.js";
 import * as fossil from "./fossil.js";
 
+export function lightings(scene) {
+    // lighting tengah
+    const pointLight1 = new THREE.PointLight(0xffffff, 200, 50);
+    pointLight1.position.set(0, 35, 0);
+    pointLight1.castShadow = true;
+    scene.add(pointLight1);
+
+    // Ambient Light (Warmer)
+    var ambientLightWarm = new THREE.AmbientLight(0xffffff, 0.3);
+    scene.add(ambientLightWarm);
+}
+
+export function proccesKeyboard(delta, keyboard, controls) {
+    let speed = 10;
+    let actualSpeed = speed * delta;
+
+    if (keyboard["w"]) {
+        controls.moveForward(actualSpeed);
+    }
+    if (keyboard["s"]) {
+        controls.moveForward(-actualSpeed);
+    }
+
+    if (keyboard["a"]) {
+        controls.moveRight(-actualSpeed);
+    }
+    if (keyboard["d"]) {
+        controls.moveRight(actualSpeed);
+    }
+}
 
 export function popUps(dinoDesc, fossilDesc, positionCamera) {
 
@@ -11,8 +41,8 @@ export function popUps(dinoDesc, fossilDesc, positionCamera) {
     if (
         positionCamera.x >= 0 &&
         positionCamera.x <= 13 &&
-        positionCamera.z <= -26 &&
-        positionCamera.z >= -33
+        positionCamera.z <= -41 &&
+        positionCamera.z >= -49
     ) {
         dino.informationPopUp(
             dinoDesc[0],
@@ -23,8 +53,8 @@ export function popUps(dinoDesc, fossilDesc, positionCamera) {
     } else if (
         positionCamera.x >= 0 &&
         positionCamera.x <= 13 &&
-        positionCamera.z <= -41 &&
-        positionCamera.z >= -49
+        positionCamera.z <= -56 &&
+        positionCamera.z >= -63
     ) {
         dino.informationPopUp(
             dinoDesc[3],
@@ -50,8 +80,8 @@ export function popUps(dinoDesc, fossilDesc, positionCamera) {
     else if (
         positionCamera.x >= -15 &&
         positionCamera.x <= -3 &&
-        positionCamera.z <= -26 &&
-        positionCamera.z >= -33
+        positionCamera.z <= -41 &&
+        positionCamera.z >= -49
     ) {
         dino.informationPopUp(
             dinoDesc[9],
@@ -62,8 +92,8 @@ export function popUps(dinoDesc, fossilDesc, positionCamera) {
     } else if (
         positionCamera.x >= -15 &&
         positionCamera.x <= -3 &&
-        positionCamera.z <= -41 &&
-        positionCamera.z >= -49
+        positionCamera.z <= -56 &&
+        positionCamera.z >= -63
     ) {
         dino.informationPopUp(
             dinoDesc[12],
